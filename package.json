@@ -2,14 +2,15 @@
 	"name": "status",
 	"version": "0.0.1",
 	"dependencies": {
-	    "express": "3.0.5",
+	  "express": "3.0.5",
 		"mongodb": "*",
 		"mongoose": "3.5.3",
 		"jade": "*",
 		"stylus": "*",
 		"passport": "*",
 		"passport-google": "*",
-		"passport-nyu": "*"
+		"passport-nyu": "*",
+		"socket.io": "0.9.10"
 	},
 	"engines": {
 		"node": "0.8.x",
