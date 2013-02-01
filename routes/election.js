@@ -47,6 +47,21 @@ exports.new = function(req, res){
 					{name: 'Sam'},
 					{name: 'Bill'}
 				]
+			},
+			{
+				name: 'Cool Guy',
+				candidates: [
+					{name: 'Morgante'},
+					{name: 'Sam'},
+					{name: 'Bill'}
+				]
+			},
+			{
+				name: 'Slim Jim',
+				candidates: [
+					{name: 'Morgante'},
+					{name: 'Sam'},
+				]
 			}
 		]
 	}).save();
