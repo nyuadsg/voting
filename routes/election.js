@@ -29,7 +29,7 @@ exports.view = function(req, res){
 
 exports.list = function(req, res){
 	Election.find({}, function(error, elections){
-		res.render("index", {
+		res.render("elections", {
 			title: "All Elections",
 			elections: elections
 		});

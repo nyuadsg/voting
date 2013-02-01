@@ -1,28 +1,21 @@
 // we need mongoose
 var mongoose = require('mongoose');
 
-var electionSchema = mongoose.Schema({
-    name: String,
-		end:  {type: Date, default: Date.now}
+var candidateSchema = new mongoose.Schema({
+	name: String,
+	votes: Number
 });
 
-// projectSchema.virtual('status').get(function () {
-// 	var now = new Date();
-// 	var timeDiff = Math.abs(now.getTime() - this.update);
-// 	var diffDays = Math.ceil(timeDiff / (1000 * 3600 * 24));
-// 	
-// 	if( diffDays > 35 )
-// 	{
-// 		return 'red';
-// 	}
-// 	else if( diffDays > 14 )
-// 	{
-// 		return 'yellow';
-// 	}
-// 	else
-// 	{
-// 		return 'green';
-// 	}
-// });
+var raceSchema = new mongoose.Schema({
+	name: String,
+	candidates: [candidateSchema],
+	voters: Array
+});
+
+var electionSchema = mongoose.Schema({
+  name: String,
+	end:  {type: Date, default: Date.now},
+	races: [raceSchema]
+});
 
 var Election = module.exports = mongoose.model('Election', electionSchema);
