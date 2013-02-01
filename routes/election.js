@@ -35,3 +35,26 @@ exports.list = function(req, res){
 		});
   });
 };
+
+exports.new = function(req, res){
+	var election = new Election({
+		name: 'February 2013',
+		end: new Date('February 11, 2013'),
+		races: [
+			{
+				name: 'Alternate Senator',
+				candidates: [
+					{name: 'Morgante'},
+					{name: 'Sam'},
+					{name: 'Bill'}
+				]
+			}
+		]
+	}).save();
+	// Election.find({}, function(error, elections){
+	// 		res.render("elections", {
+	// 			title: "All Elections",
+	// 			elections: elections
+	// 		});
+	//   });
+};

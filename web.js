@@ -45,6 +45,7 @@ app.configure('development', function(){
 
 // all routes
 app.get('/', election.list);
+app.get('/election/new', election.new);
 
 // authentication with passport
 passport.serializeUser(function(user, done) {

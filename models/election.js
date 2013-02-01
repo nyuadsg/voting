@@ -3,13 +3,13 @@ var mongoose = require('mongoose');
 
 var candidateSchema = new mongoose.Schema({
 	name: String,
-	votes: Number
+	votes: {type: Number, default: 0}
 });
 
 var raceSchema = new mongoose.Schema({
 	name: String,
 	candidates: [candidateSchema],
-	voters: Array
+	voters: {type: Array, default: []}
 });
 
 var electionSchema = mongoose.Schema({
