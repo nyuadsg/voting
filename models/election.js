@@ -19,8 +19,10 @@ var electionSchema = mongoose.Schema({
 });
 
 electionSchema.methods.vote = function (netID, race, candidate) {
-	console.log( this );
-  // return this.model('Animal').find({ type: this.type }, cb);
+	race= this.races.id( race );
+	candidate = race.candidates.id( candidate );
+	candidate.votes = candidate.votes + 1;
+	race.voters.push( 'mp3255' );
 }
 
 var Election = module.exports = mongoose.model('Election', electionSchema);

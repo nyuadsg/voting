@@ -26,7 +26,6 @@ var ballot = {
 		this.votes[ '"' + race + '"' ] = candidate;
 	},
 	submit: function() {
-		console.log( JSON.stringify(this.votes) );
 		$.post(window.location, {
 				netID: this.netID.val(),
 				election: this.ballot.attr('id'),
