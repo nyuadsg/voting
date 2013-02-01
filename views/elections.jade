@@ -1,0 +1,9 @@
+extends layout
+
+block content
+	h1= title
+	p Here are all current elections.
+	ul
+		each election in elections
+			li
+				h5= election.name

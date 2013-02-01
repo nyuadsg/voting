@@ -2,19 +2,19 @@
 var express = require('express')
 	, http = require('http')
 	, path = require('path');
-var project = require('./routes/project');
+var election = require('./routes/election');
 var passport = require('passport')
   , NYUPassportStrategy = require('passport-nyu').Strategy;
 
 // prepare database
 var mongoose = require('mongoose');
-mongoose.connect(process.env.MONGOLAB_URI || process.env.MONGOHQ_URL || 'mongodb://localhost/test');
+mongoose.connect(process.env.MONGOLAB_URI || process.env.MONGOHQ_URL || 'mongodb://localhost/voting');
 
 var db = mongoose.connection;
 db.on('error', console.error.bind(console, 'connection error:'));
 db.once('open', function callback () {
 	// schema for users
-	var Project = require('./models/project');
+	var Election = require('./models/election');
 });
 
 // start app server
@@ -30,7 +30,7 @@ app.configure(function(){
 	app.use(express.bodyParser());
 	app.use(express.methodOverride());
 	app.use(express.cookieParser( process.env.SECRET ));
-	app.use(express.session({ key: 'status.sess', secret: process.env.SECRET }));
+	app.use(express.session({ key: 'voting.sess', secret: process.env.SECRET }));
 	app.use(passport.initialize());
 	app.use(passport.session());
 	app.use(app.router);
@@ -44,10 +44,7 @@ app.configure('development', function(){
 });
 
 // all routes
-app.get('/', project.list);
-app.get('/projects', project.list);
-app.get('/projects/edit', project.edit);
-app.post('/project/:slug/update', project.update);
+app.get('/', election.list);
 
 // authentication with passport
 passport.serializeUser(function(user, done) {
