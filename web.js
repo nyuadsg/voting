@@ -46,6 +46,9 @@ app.configure('development', function(){
 // all routes
 app.get('/', election.list);
 app.get('/election/new', election.new);
+app.get('/election/:id/vote', election.view);
+app.get('/election/:election/vote/:race/for/:candidate', election.vote);
+
 
 // authentication with passport
 passport.serializeUser(function(user, done) {
@@ -60,7 +63,7 @@ passport.deserializeUser(function(token, done) {
 passport.use('nyu-passport', new NYUPassportStrategy({
 	clientID: process.env.PASSPORT_ID,
 	clientSecret: process.env.PASSPORT_SECRET,
-	callbackURL: process.env.BASE_URL + '/auth/provider/callback'
+	callbackURL: process.env.BASE_URL + '/auth/passport/callback'
 	},
 	function(accessToken, refreshToken, profile, done) {
 		console.log( profile );
@@ -73,14 +76,14 @@ passport.use('nyu-passport', new NYUPassportStrategy({
 ));
 
 // google auth
-app.get('/auth/provider', passport.authenticate('nyu-passport'));
+app.get('/auth/passport', passport.authenticate('nyu-passport'));
 
 // The OAuth 2.0 provider has redirected the user back to the application.
 // Finish the authentication process by attempting to obtain an access
 // token.  If authorization was granted, the user will be logged in.
 // Otherwise, authentication has failed.
-app.get('/auth/provider/callback', 
-	passport.authenticate('nyu-passport', { successRedirect: '/', failureRedirect: '/auth/provider' }));
+app.get('/auth/passport/callback', 
+	passport.authenticate('nyu-passport', { successRedirect: '/', failureRedirect: '/auth/passport' }));
 
 // start listening
 var port = process.env.PORT || 5000;

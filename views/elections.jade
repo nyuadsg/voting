@@ -6,4 +6,5 @@ block content
 	ul
 		each election in elections
 			li
-				h5= election.name
+				h5
+					a(href=process.env.BASE_URL + '/election/' + election.id + '/vote') candidate.name

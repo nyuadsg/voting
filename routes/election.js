@@ -1,33 +1,32 @@
 var Election = require('../models/election');
 
-// exports.update = function(req, res){
-// 	Project.findOneAndUpdate(
-// 		{slug: req.params.slug},
-// 		{update: new Date().getTime()},
-// 		{upsert: true},
-// 		function( err, project ) {
-// 			if( err )
-// 			{
-// 				res.send( 'error' );
-// 			}
-// 			else
-// 			{
-// 				res.send( 'good' );
-// 			}
-// 		}
-// 	);
-// };
-
 exports.view = function(req, res){
-	// Project.find({}, function(error, projects){
-	// 	res.render("status", {
-	// 		title: "RDC Projects",
-	// 		projects: projects
-	// 	});
-	//   });
+	Election.findById(req.params.id, function(error, election){
+		res.render("vote", {
+			title: election.name,
+			election: election,
+			races: election.races
+		});
+  });
 };
 
-exports.list = function(req, res){
+exports.vote = function(req, res){
+	Election.findById(req.params.election, function(error, election){
+		race = election.races.id( req.params.race );
+		candidate = race.candidates.id( req.params.candidate );
+		candidate.votes = candidate.votes + 1;
+		race.voters.push( 'mp3255' );
+		console.log( race );
+		election.save();
+		res.render("vote", {
+			title: election.name,
+			election: election,
+			races: election.races
+		});
+  });
+};
+
+exports.list = function(req, res, next){
 	Election.find({}, function(error, elections){
 		res.render("elections", {
 			title: "All Elections",
@@ -51,10 +50,4 @@ exports.new = function(req, res){
 			}
 		]
 	}).save();
-	// Election.find({}, function(error, elections){
-	// 		res.render("elections", {
-	// 			title: "All Elections",
-	// 			elections: elections
-	// 		});
-	//   });
 };

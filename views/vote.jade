@@ -1,0 +1,11 @@
+extends layout
+
+block content
+	h1= title
+	p Please vote for candidates in each of the following races.
+	each race in races
+		h2= race.name
+		ul
+			each candidate in race.candidates
+				li
+					a(href=process.env.BASE_URL + '/election/' + election.id + '/vote/' + race.id + '/for/' + candidate.id) candidate.name
