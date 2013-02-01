@@ -5,7 +5,7 @@ var ballot = {
 		this.candidates = $('.candidate', this.ballot);
 		this.netID= $('input#netID', this.ballot);
 		
-		this.votes = new Array;
+		this.votes = new Object;
 		
 		$('a', this.candidates).click( function( event ) {
 			candidate = $(this).parents('.candidate').first();
@@ -23,13 +23,14 @@ var ballot = {
 		});
 	},
 	voteFor: function( race, candidate ) {
-		this.votes[ race ] = candidate;
+		this.votes[ '"' + race + '"' ] = candidate;
 	},
 	submit: function() {
+		console.log( JSON.stringify(this.votes) );
 		$.post(window.location, {
 				netID: this.netID.val(),
 				election: this.ballot.attr('id'),
-				votes: this.votes
+				votes: JSON.stringify(this.votes)
 			},
 			function( response) {
 				

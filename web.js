@@ -47,6 +47,7 @@ app.configure('development', function(){
 app.get('/', election.list);
 app.get('/election/new', election.new);
 app.get('/election/:id/vote', election.view);
+app.post('/election/:id/vote', election.vote);
 app.get('/election/:election/vote/:race/for/:candidate', election.vote);
 
 

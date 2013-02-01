@@ -11,18 +11,23 @@ exports.view = function(req, res){
 };
 
 exports.vote = function(req, res){
-	Election.findById(req.params.election, function(error, election){
-		race = election.races.id( req.params.race );
-		candidate = race.candidates.id( req.params.candidate );
-		candidate.votes = candidate.votes + 1;
-		race.voters.push( 'mp3255' );
-		console.log( race );
-		election.save();
-		res.render("vote", {
-			title: election.name,
-			election: election,
-			races: election.races
+	Election.findById(req.params.id, function(error, election){
+		var netID = req.body.netID;
+		console.log( req.body );
+		
+		Object.keys(req.body.votes).forEach(function(element, key, _array) {
+			console.log( req.body.votes, element );
 		});
+		// race = election.races.id( req.params.race );
+		// candidate = race.candidates.id( req.params.candidate );
+		// candidate.votes = candidate.votes + 1;
+		// race.voters.push( 'mp3255' );
+		// election.save();
+		// res.render("vote", {
+		// 	title: election.name,
+		// 	election: election,
+		// 	races: election.races
+		// });
   });
 };
 
