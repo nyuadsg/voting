@@ -49,17 +49,17 @@ app.configure('development', function(){
 app.get('/', [login.ensure, election.list]);
 // app.get('/election/new', election.new);
 app.get('/election/:id/vote', [login.ensure, election.view]);
-app.post('/election/:id/vote', election.vote);
-app.get('/election/:election/vote/:race/for/:candidate', election.vote);
+app.post('/election/:id/vote', [login.ensure, election.vote]);
+// app.get('/election/:election/vote/:race/for/:candidate', election.vote);
 
 
 // authentication with passport
 passport.serializeUser(function(user, done) {
-	done(null, user.token);
+	done(null, JSON.stringify(user));
 });
 
-passport.deserializeUser(function(token, done) {
-	done(null, token);
+passport.deserializeUser(function(user, done) {
+	done(null, JSON.parse( user ) );
 });
 
 // oauth
@@ -72,7 +72,8 @@ passport.use('nyu-passport', new NYUPassportStrategy({
 		user = {
 			token: accessToken,
 			netID: profile.netID
-		}
+		};
+		console.log( user );
 		done(null, user);
 	}
 ));

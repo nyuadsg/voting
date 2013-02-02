@@ -15,7 +15,7 @@ exports.view = function(req, res){
 
 exports.vote = function(req, res){
 	Election.findById(req.params.id, function(error, election){
-		var netID = 'mp3255';	
+		var netID = req.user.netID;
 		success = true;
 		election.races.forEach( function( element ) {
 			if( !election.vote( netID, element.id, req.body[element.id] ) ) {
