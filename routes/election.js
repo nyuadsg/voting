@@ -1,9 +1,12 @@
 var Election = require('../models/election');
 
+var admins = ['mp'];
+
 exports.view = function(req, res){
 	Election.findById(req.params.id, function(error, election){
 		res.render("vote", {
 			title: election.name,
+			admin: false,
 			election: election,
 			races: election.races
 		});
@@ -12,14 +15,52 @@ exports.view = function(req, res){
 
 exports.vote = function(req, res){
 	Election.findById(req.params.id, function(error, election){
-		var netID = req.body.netID;	
-		var votes = JSON.parse( req.body.votes );
-		Object.keys(votes).forEach(function(key, a, _array) {
-			val = votes[ key ];
-			election.vote( netID, key.replace(/['"]/g,''), val );
+		var netID = 'mp3255';	
+		success = true;
+		election.races.forEach( function( element ) {
+			if( !election.vote( netID, element.id, req.body[element.id] ) ) {
+				success = false;
+			}
 		});
-		election.save();
+		if( success )
+		{
+			election.save(function (err) {
+			  if (err) {
+					res.render("failure", {
+						title: election.name,
+						reason: 'Results couldn&apos;t be saved.'
+					});
+				} else {
+					res.render("success", {
+						title: election.name,
+						name: election.name
+					});
+				}
+			});
+			
+		}
+		else
+		{
+			res.render("failure", {
+				title: election.name,
+				reason: 'You already voted.'
+			});
+		}		
   });
+	
+	// Election.findById(req.params.id, function(error, election){
+	// 	var netID = req.body.netID;	
+	// 	var votes = JSON.parse( req.body.votes );
+	// 	election.races.forEach( function( element ) {
+	// 		console.log( element );
+	// 		
+	// 	});
+	// 	// Object.keys(votes).forEach(function(key, a, _array) {
+	// 	// 	val = votes[ key ];
+	// 	// 	election.vote( netID, key.replace(/['"]/g,''), val );
+	// 	// });
+	// 	// election.save();
+	//   });
 };
 
 exports.list = function(req, res, next){

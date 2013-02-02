@@ -2,7 +2,9 @@
 var express = require('express')
 	, http = require('http')
 	, path = require('path');
-var election = require('./routes/election');
+var election = require('./routes/election')
+	, auth = require('./routes/auth');
+var login = require('./helpers/login');
 var passport = require('passport')
   , NYUPassportStrategy = require('passport-nyu').Strategy;
 
@@ -44,9 +46,9 @@ app.configure('development', function(){
 });
 
 // all routes
-app.get('/', election.list);
-app.get('/election/new', election.new);
-app.get('/election/:id/vote', election.view);
+app.get('/', [login.ensure, election.list]);
+// app.get('/election/new', election.new);
+app.get('/election/:id/vote', [login.ensure, election.view]);
 app.post('/election/:id/vote', election.vote);
 app.get('/election/:election/vote/:race/for/:candidate', election.vote);
 
@@ -67,7 +69,6 @@ passport.use('nyu-passport', new NYUPassportStrategy({
 	callbackURL: process.env.BASE_URL + '/auth/passport/callback'
 	},
 	function(accessToken, refreshToken, profile, done) {
-		console.log( profile );
 		user = {
 			token: accessToken,
 			netID: profile.netID
@@ -76,15 +77,11 @@ passport.use('nyu-passport', new NYUPassportStrategy({
 	}
 ));
 
-// google auth
-app.get('/auth/passport', passport.authenticate('nyu-passport'));
-
-// The OAuth 2.0 provider has redirected the user back to the application.
-// Finish the authentication process by attempting to obtain an access
-// token.  If authorization was granted, the user will be logged in.
-// Otherwise, authentication has failed.
-app.get('/auth/passport/callback', 
-	passport.authenticate('nyu-passport', { successRedirect: '/', failureRedirect: '/auth/passport' }));
+// passport auth
+app.get('/auth/start', auth.start); // start the auth process
+app.get('/auth/passport', passport.authenticate('nyu-passport')); // pass along to passport
+app.get('/auth/passport/callback', passport.authenticate('nyu-passport', { successRedirect: '/auth/end', failureRedirect: '/auth/passport' })); // hear back from Passport
+app.get('/auth/end', auth.finish); // finish the auth process
 
 // start listening
 var port = process.env.PORT || 5000;

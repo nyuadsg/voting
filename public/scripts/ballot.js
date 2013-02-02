@@ -39,5 +39,5 @@ var ballot = {
 }
 
 $(document).ready(function() {
-	ballot.init();
+	// ballot.init();
 });

@@ -1,11 +1,26 @@
 extends layout
 
 block content
-	form(class='ballot', id=election.id)
+	form(class='ballot', id=election.id,method='POST')
 		h1= title
 		
-		p What is your NetID?
-		input(id='netID',type='text',name='netID')
+		if admin
+			p What is your NetID?
+			input(id='netID',type='text',name='netID')
+			
+		if !admin
+			p What is your class year?
+			ul
+				li
+					input(type='radio',name='class',id='2014',value='2014')
+					label(for='2014') 2014
+				li
+					input(type='radio',name='class',id='2015',value='2015')
+					label(for='2015') 2015
+				li
+					input(type='radio',name='class',id='2016',value='2016')
+					label(for='2016') 2016
+			
 		
 		p Please vote for candidates in each of the following races.
 		ul#races
@@ -14,7 +29,8 @@ block content
 					h2= race.name
 					ul
 						each candidate in race.candidates
-							li.candidate(id=candidate.id)
-								a(href=process.env.BASE_URL + '/election/' + election.id + '/vote/' + race.id + '/for/' + candidate.id) candidate.name
+							li.candidate
+								input(type='radio',name=race.id,id=candidate.id,value=candidate.id)
+								label(for=candidate.id)= candidate.name
 		
 		input(id='submit',type='submit',value='Vote')

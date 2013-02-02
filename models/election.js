@@ -21,8 +21,16 @@ var electionSchema = mongoose.Schema({
 electionSchema.methods.vote = function (netID, race, candidate) {
 	race= this.races.id( race );
 	candidate = race.candidates.id( candidate );
+	
+	if( race.voters.indexOf( netID ) != -1 )
+	{
+		return false;
+	}
+		
 	candidate.votes = candidate.votes + 1;
-	race.voters.push( 'mp3255' );
+	race.voters.push( netID );
+	
+	return true;
 }
 
 var Election = module.exports = mongoose.model('Election', electionSchema);

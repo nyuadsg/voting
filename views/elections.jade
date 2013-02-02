@@ -7,4 +7,4 @@ block content
 		each election in elections
 			li
 				h5
-					a(href=process.env.BASE_URL + '/election/' + election.id + '/vote') election.title
+					a(href=process.env.BASE_URL + '/election/' + election.id + '/vote')=election.name
