@@ -73,7 +73,6 @@ passport.use('nyu-passport', new NYUPassportStrategy({
 			token: accessToken,
 			netID: profile.netID
 		};
-		console.log( user );
 		done(null, user);
 	}
 ));
