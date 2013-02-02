@@ -1,6 +1,6 @@
 var Election = require('../models/election');
 
-var admins = ['mp'];
+var admins = ['mp3255'];
 
 exports.view = function(req, res){
 	Election.findById(req.params.id, function(error, election){
@@ -73,33 +73,41 @@ exports.list = function(req, res, next){
 };
 
 exports.new = function(req, res){
-	var election = new Election({
-		name: 'February 2013',
-		end: new Date('February 11, 2013'),
-		races: [
-			{
-				name: 'Alternate Senator',
-				candidates: [
-					{name: 'Morgante'},
-					{name: 'Sam'},
-					{name: 'Bill'}
-				]
-			},
-			{
-				name: 'Cool Guy',
-				candidates: [
-					{name: 'Morgante'},
-					{name: 'Sam'},
-					{name: 'Bill'}
-				]
-			},
-			{
-				name: 'Slim Jim',
-				candidates: [
-					{name: 'Morgante'},
-					{name: 'Sam'},
-				]
-			}
-		]
-	}).save();
+	if( admins.indexOf( req.user.netID ) == -1 ) {
+		res.redirect(  process.env.base_url );
+	}
+	else
+	{
+		var election = new Election({
+			name: 'February 2013',
+			end: new Date('February 11, 2013'),
+			races: [
+				{
+					name: 'Alternate Senator',
+					candidates: [
+						{name: 'Morgante'},
+						{name: 'Sam'},
+						{name: 'Bill'}
+					]
+				},
+				{
+					name: 'Cool Guy',
+					candidates: [
+						{name: 'Morgante'},
+						{name: 'Sam'},
+						{name: 'Bill'}
+					]
+				},
+				{
+					name: 'Slim Jim',
+					candidates: [
+						{name: 'Morgante'},
+						{name: 'Sam'},
+					]
+				}
+			]
+		}).save(function() {
+			res.redirect(  process.env.base_url );
+		});
+	}
 };
