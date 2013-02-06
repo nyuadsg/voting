@@ -4,21 +4,30 @@ var admins = ['mp3255'];
 
 exports.view = function(req, res){
 	Election.findById(req.params.id, function(error, election){
+		var races = [];
+		
+		// only pull in races I can vote in
+		election.races.forEach( function( element ) {
+			if( element.classes.indexOf( req.user.class ) != -1 )
+			{
+				races.push( element );
+			}
+		});
+		
 		res.render("vote", {
 			title: election.name,
 			admin: false,
 			election: election,
-			races: election.races
+			races: races
 		});
   });
 };
 
 exports.vote = function(req, res){
 	Election.findById(req.params.id, function(error, election){
-		var netID = req.user.netID;
 		success = true;
 		election.races.forEach( function( element ) {
-			if( !election.vote( netID, element.id, req.body[element.id] ) ) {
+			if( !election.vote( req.user, element.id, req.body[element.id] ) ) {
 				success = false;
 			}
 		});

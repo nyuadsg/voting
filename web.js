@@ -71,7 +71,8 @@ passport.use('nyu-passport', new NYUPassportStrategy({
 	function(accessToken, refreshToken, profile, done) {
 		user = {
 			token: accessToken,
-			netID: profile.netID
+			netID: profile.netID,
+			class: profile.class
 		};
 		done(null, user);
 	}

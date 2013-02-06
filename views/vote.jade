@@ -7,20 +7,6 @@ block content
 		if admin
 			p What is your NetID?
 			input(id='netID',type='text',name='netID')
-			
-		if !admin
-			p What is your class year?
-			ul
-				li
-					input(type='radio',name='class',id='2014',value='2014')
-					label(for='2014') 2014
-				li
-					input(type='radio',name='class',id='2015',value='2015')
-					label(for='2015') 2015
-				li
-					input(type='radio',name='class',id='2016',value='2016')
-					label(for='2016') 2016
-			
 		
 		p Please vote for candidates in each of the following races.
 		ul#races
