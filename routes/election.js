@@ -13,7 +13,7 @@ exports.view = function(req, res){
 				races.push( element );
 			}
 		});
-		
+				
 		res.render("vote", {
 			title: election.name,
 			admin: false,
@@ -104,7 +104,9 @@ exports.new = function(req, res){
 					candidates: [
 						{name: 'Morgante'},
 						{name: 'Sam'},
-						{name: 'Bill'}
+						{name: 'Bill'},
+						{name: 'Dawg'},
+						{name: 'Samthony'}
 					]
 				},
 				{

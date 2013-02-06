@@ -19,10 +19,13 @@ var electionSchema = mongoose.Schema({
 	races: [raceSchema]
 });
 
-electionSchema.methods.vote = function (user, race, candidate) {
+electionSchema.methods.vote = function (user, race, candidates) {
 	race= this.races.id( race );
-	candidate = race.candidates.id( candidate );
 	
+	// always deal with an array
+	if( !Array.isArray( candidates ) )
+		candidates = [candidates];
+		
 	// check if they are in the proper class
 	if( race.classes.indexOf( user.class ) == -1 )
 	{
@@ -34,8 +37,12 @@ electionSchema.methods.vote = function (user, race, candidate) {
 	{
 		return false;
 	}
-		
-	candidate.votes = candidate.votes + 1;
+	
+	candidates.forEach( function( element ) {
+		race.candidates.id( element ).votes = race.candidates.id( element ).votes + 1;
+	});
+	
+	// add them to the list of voters
 	race.voters.push( user.netID );
 	
 	return true;

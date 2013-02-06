@@ -16,7 +16,7 @@ block content
 					ul
 						each candidate in race.candidates
 							li.candidate
-								input(type='radio',name=race.id,id=candidate.id,value=candidate.id)
-								label(for=candidate.id)= candidate.name
+								input(type='checkbox',name=race.id,id=candidate.id,value=candidate.id)
+								label(for=candidate.id)= candidate.votes
 		
 		input(id='submit',type='submit',value='Vote')
