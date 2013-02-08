@@ -46,12 +46,12 @@ app.configure('development', function(){
 });
 
 // all routes
-app.get('/', [login.ensure, election.list]);
+app.get('/', election.info);
+app.get('/elections', [login.ensure, election.list]);
 app.get('/election/new', [login.ensure, election.new]);
 app.get('/election/:id/vote', [login.ensure, election.view]);
 app.post('/election/:id/vote', [login.ensure, election.vote]);
 // app.get('/election/:election/vote/:race/for/:candidate', election.vote);
-
 
 // authentication with passport
 passport.serializeUser(function(user, done) {

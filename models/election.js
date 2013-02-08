@@ -15,7 +15,7 @@ var raceSchema = new mongoose.Schema({
 
 var electionSchema = mongoose.Schema({
   name: String,
-	end:  {type: Date, default: Date.now},
+	open: Boolean,
 	races: [raceSchema]
 });
 

@@ -2,6 +2,13 @@ var Election = require('../models/election');
 
 var admins = ['mp3255'];
 
+exports.info = function( req, res ) {
+	res.render("index", {
+		title: 'Student Government Elections',
+		start: 'February 9th'
+	});
+}
+
 exports.view = function(req, res){
 	Election.findById(req.params.id, function(error, election){
 		var races = [];
