@@ -96,31 +96,14 @@ exports.new = function(req, res){
 	{
 		var election = new Election({
 			name: 'February 2013',
-			end: new Date('February 11, 2013'),
+			open: true
 			races: [
 				{
-					name: 'Alternate Senator',
+					name: 'President'
 					candidates: [
-						{name: 'Morgante'},
+						{name: 'Alex Nyikos', year: 2015, photo: 'http://voting.sg.nyuad.org'},
 						{name: 'Sam'},
 						{name: 'Bill'}
-					]
-				},
-				{
-					name: 'Cool Guy',
-					candidates: [
-						{name: 'Morgante'},
-						{name: 'Sam'},
-						{name: 'Bill'},
-						{name: 'Dawg'},
-						{name: 'Samthony'}
-					]
-				},
-				{
-					name: 'Slim Jim',
-					candidates: [
-						{name: 'Morgante'},
-						{name: 'Sam'},
 					]
 				}
 			]
