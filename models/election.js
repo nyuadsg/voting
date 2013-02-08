@@ -3,6 +3,8 @@ var mongoose = require('mongoose');
 
 var candidateSchema = new mongoose.Schema({
 	name: String,
+	year: Number,
+	photo: String,
 	votes: {type: Number, default: 0}
 });
 
@@ -22,9 +24,7 @@ var electionSchema = mongoose.Schema({
 electionSchema.methods.vote = function (user, race, candidates) {
 	race= this.races.id( race );
 	
-	// always deal with an array
-	if( !Array.isArray( candidates ) )
-		candidates = [candidates];
+
 		
 	// check if they are in the proper class
 	if( race.classes.indexOf( user.class ) == -1 )
@@ -38,9 +38,16 @@ electionSchema.methods.vote = function (user, race, candidates) {
 		return false;
 	}
 	
-	candidates.forEach( function( element ) {
-		race.candidates.id( element ).votes = race.candidates.id( element ).votes + 1;
-	});
+	if( candidates != null )
+	{
+		// always deal with an array
+		if( !Array.isArray( candidates ) )
+			candidates = [candidates];
+		
+		candidates.forEach( function( element ) {
+			race.candidates.id( element ).votes = race.candidates.id( element ).votes + 1;
+		});
+	}
 	
 	// add them to the list of voters
 	race.voters.push( user.netID );
