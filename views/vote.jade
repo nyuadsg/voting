@@ -17,6 +17,6 @@ block content
 						each candidate in race.candidates
 							li.candidate
 								input(type='checkbox',name=race.id,id=candidate.id,value=candidate.id)
-								label(for=candidate.id)= candidate.votes
+								label(for=candidate.id) #{candidate.name} '12
 		
 		input(id='submit',type='submit',value='Vote')
