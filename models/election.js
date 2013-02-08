@@ -8,6 +8,10 @@ var candidateSchema = new mongoose.Schema({
 	votes: {type: Number, default: 0}
 });
 
+candidateSchema.virtual('shortyear').get(function () {
+  return this.year.toString().substr(2,4);
+});
+
 var raceSchema = new mongoose.Schema({
 	name: String,
 	candidates: [candidateSchema],

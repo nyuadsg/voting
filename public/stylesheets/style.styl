@@ -1,5 +1,134 @@
 body
-  padding: 50px
-  font: 14px "Lucida Grande", Helvetica, Arial, sans-serif
-a
-  color: #00B7FF
+	font: 14px "Lucida Grande", Helvetica, Arial, sans-serif
+	background: #dbb200
+
+#header
+	height: 150px
+	background: #000
+	
+	span
+		height: 150px
+		display: block
+		float: left
+		
+	.left, .right
+		background: url('../images/header-repeat.png') repeat-x top right
+		width: 300px
+	
+	.right
+		background-position: top left
+
+	.center
+		width: 600px
+		background: url('../images/header-left.png') no-repeat top left
+	
+	h1
+		background: url('../images/header-right.png') no-repeat top right
+		height: 150px
+		margin: 0
+		padding: 0 100px
+		font-size: 100%
+		text-transform: uppercase
+		
+		strong.student, strong.government, em.page
+			display: block
+			line-height: 1em
+			text-align: center
+		
+		strong.student
+			font-size: 60px
+			color: #fbcf0c
+
+		strong.government
+			font-size: 40px
+			color: #fbcf0c
+	
+		em.page
+			font-style: normal
+			font-size: 52px
+			color: #FFF
+			
+h2
+	background: #000 url('../images/subheader.png') no-repeat left top
+	height: 150px
+	color: #FFF
+	margin: 0
+	padding: 0 0 0 100px
+	line-height: 130px
+	font-size: 600%			
+p
+	display: block
+	background: #542793
+	font-size: 200%
+	margin: 30px
+	padding: 15px
+	color: #FFF
+	text-align: center
+
+form.ballot		
+	ul
+		list-style: none
+		margin: 0
+		padding: 0		
+		
+		li
+			margin: 0
+			padding: 0
+			
+		li.candidate
+			float: left
+			margin: 30px
+			color: #FFF
+			
+			&.selected
+				
+				label
+					background: #542793
+				
+					em
+						display: block
+						
+			input
+				display: none
+			
+			label
+				width: 210px
+				height: 137px
+				position: relative
+				background: #808080
+				
+				em
+					display: none
+					width: 32px
+					height: 32px
+					background: #808080 url('../images/check.gif')
+					position: absolute
+					top: 0px
+					left: 0px
+				
+				strong
+					position: absolute
+					left: 110px
+					top: 50%
+					margin-top: -1.5em
+					float: left
+					display: block
+					width: 100px
+					font-size: 100%
+				
+				img
+					position: absolute
+					left: 0px
+					top: 0px
+					width: 100px
+			
+		li.clear
+			clear: both
+	
+	input#submit
+		font-size: 100%
+		background: #542793
+		border: 2px solid #FFF
+		padding: 5px
+		color: #FFF
+		height: 1em
