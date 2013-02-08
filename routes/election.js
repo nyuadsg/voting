@@ -96,52 +96,51 @@ exports.new = function(req, res){
 				{
 					name: 'President',
 					candidates: [
-						{name: 'Alex Nyikos', year: 2015, photo: 'http://voting.sg.nyuad.org/photos/morgante.jpg'},
-						{name: 'Andrew Pitts', year: 2014, photo: 'http://voting.sg.nyuad.org/photos/morgante.jpg'},
-						{name: 'Leah Reynolds', year: 2014, photo: 'http://voting.sg.nyuad.org/photos/morgante.jpg'},
-						{name: 'Massimiliano Valli', year: 2016, photo: 'http://voting.sg.nyuad.org/photos/morgante.jpg'},
-						{name: 'Otari (Otto) Kakhidze', year: 2015, photo: 'http://voting.sg.nyuad.org/photos/morgante.jpg'},
+						{name: 'Alex Nyikos', year: 2015, photo: 'http://voting.sg.nyuad.org/photos/alex.jpg'},
+						{name: 'Andrew Pitts', year: 2014, photo: 'http://voting.sg.nyuad.org/photos/andrew.jpg'},
+						{name: 'Leah Reynolds', year: 2014, photo: 'http://voting.sg.nyuad.org/photos/leah.jpg'},
+						{name: 'Massimiliano Valli', year: 2016, photo: 'http://voting.sg.nyuad.org/photos/max.jpg'},
+						{name: 'Otari (Otto) Kakhidze', year: 2015, photo: 'http://voting.sg.nyuad.org/photos/otto.jpg'},
 					]
 				},
 				{
 					name: 'Vice President',
 					candidates: [
-						{name: 'Andres Rodriguez', year: 2016, photo: 'http://voting.sg.nyuad.org/photos/morgante.jpg'},
-						{name: 'Corey Meyer', year: 2015, photo: 'http://voting.sg.nyuad.org/photos/morgante.jpg'}
+						{name: 'Andres Rodriguez', year: 2016, photo: 'http://voting.sg.nyuad.org/photos/andres.jpg'},
+						{name: 'Corey Meyer', year: 2015, photo: 'http://voting.sg.nyuad.org/photos/corey.jpg'}
 					]
 				},
 				{
 					name: 'Senator',
 					candidates: [
-						{name: 'Alexander Wang', year: 2014, photo: 'http://voting.sg.nyuad.org/photos/morgante.jpg'},
-						{name: 'Geo Kamus', year: 2016, photo: 'http://voting.sg.nyuad.org/photos/morgante.jpg'},
-						{name: 'Hassan Syed', year: 2016, photo: 'http://voting.sg.nyuad.org/photos/morgante.jpg'}
+						{name: 'Geo Kamus', year: 2016, photo: 'http://voting.sg.nyuad.org/photos/geo.jpg'},
+						{name: 'Hassan Syed', year: 2016, photo: 'http://voting.sg.nyuad.org/photos/hassan.jpg'}
 					]
 				},
 				{
 					name: 'Alternate Senator',
 					candidates: [
-						{name: 'Clara Bicalho Maia Correia', year: 2016, photo: 'http://voting.sg.nyuad.org/photos/morgante.jpg'},
+						{name: 'Clara Bicalho Maia Correia', year: 2016, photo: 'http://voting.sg.nyuad.org/photos/clara.jpg'},
 						{name: 'Morgante Pell', year: 2016, photo: 'http://voting.sg.nyuad.org/photos/morgante.jpg'}
 					]
 				},
 				{
 					name: 'Secretary',
 					candidates: [
-						{name: 'Veronica Houk', year: 2016, photo: 'http://voting.sg.nyuad.org/photos/morgante.jpg'},
+						{name: 'Veronica Houk', year: 2016, photo: 'http://voting.sg.nyuad.org/photos/veronica.jpg'},
 					]
 				},
 				{
 					name: 'Treasurer',
 					candidates: [
-						{name: 'Angela Ortega Pastor', year: 2016, photo: 'http://voting.sg.nyuad.org/photos/morgante.jpg'},
-						{name: 'Angelina Micha Djaja', year: 2016, photo: 'http://voting.sg.nyuad.org/photos/morgante.jpg'},
+						{name: 'Angela Ortega Pastor', year: 2016, photo: 'http://voting.sg.nyuad.org/photos/angela.jpg'},
+						{name: 'Angelina Micha Djaja', year: 2016, photo: 'http://voting.sg.nyuad.org/photos/angelina.jpg'},
 					]
 				},
 				{
 					name: 'Class of 2014 Representative',
 					candidates: [
-						{name: 'Irene Paneda', year: 2014, photo: 'http://voting.sg.nyuad.org/photos/morgante.jpg'},
+						{name: 'Irene Paneda', year: 2014, photo: 'http://voting.sg.nyuad.org/photos/irene.jpg'},
 					]
 				},
 			]

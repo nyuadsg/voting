@@ -6,7 +6,7 @@ var ballot = {
 		// this.netID= $('input#netID', this.ballot);
 		
 		$('input', this.candidates ).change( function( ev ) {
-			$(this).parents('.candidate').toggleClass('selected')
+			$(this).parents('.candidate').toggleClass('selected');
 		});
 		
 		// this.votes = new Object;
