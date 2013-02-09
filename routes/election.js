@@ -3,6 +3,7 @@ var Election = require('../models/election');
 var admins = ['mp3255'];
 
 exports.info = function( req, res ) {
+	res.redirect( 'http://voting.sg.nyuad.org/election/5116ab7ec269d30200000003/vote' );
 	res.render("index", {
 		title: 'Student Government Elections',
 		start: 'February 9th'
