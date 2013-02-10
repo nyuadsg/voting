@@ -33,17 +33,8 @@ var ballot = {
 		// });
 	},
 	admin: function() {
-		this.races.hide();
-		this.vote.hide();
-		this.netID.hide();
-		
-		$('input#RFID').focus().keypress( function( ev ) {
-			ballot.races.slideDown();
-			ballot.vote.slideDown();
-			ballot.netID.show();
-			$('input#netID').focus();
-			$(this).css('margin-left', '-300000px');
-		});
+		$('input#RFID').css('margin-left', '-300000px');
+		$('input#netID').focus();
 		
 	}
 	// voteFor: function( race, candidate ) {
