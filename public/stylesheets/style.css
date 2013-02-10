@@ -105,7 +105,7 @@ form.ballot ul li.candidate input {
 }
 form.ballot ul li.candidate label {
   width: 210px;
-  height: 137px;
+  height: 141px;
   position: relative;
   background: #808080;
 }
@@ -130,8 +130,8 @@ form.ballot ul li.candidate label strong {
 }
 form.ballot ul li.candidate label img {
   position: absolute;
-  left: 0px;
-  top: 0px;
+  left: 2px;
+  top: 2px;
   width: 100px;
 }
 form.ballot ul li.clear {
