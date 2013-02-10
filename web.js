@@ -50,8 +50,8 @@ app.configure('development', function(){
 app.get('/', election.info);
 app.get('/elections', [login.ensure, election.list]);
 app.get('/election/new', [login.ensure, election.new]);
+app.get('/election/:id/vote', login.ensure, election.view);
 // app.get('/election/:id/vote', [login.ensure, election.view]);
-app.get('/election/:id/vote', [login.ensure, election.view]);
 app.get('/election/:id/admin', election.admin);
 app.post('/election/:id/vote', [login.ensure, election.vote]);
 app.post('/election/:id/admin', election.vote);

@@ -1,6 +1,24 @@
+$background = #FFFFFF
+$font-color = #222222
+
+@font-face {  
+  font-family: "Gotham Black";  
+  src: url( '../fonts/Gotham-Black.odf') format("opentype");  
+}
+
+@font-face {  
+  font-family: "Gotham Bold";  
+  src: url( '../fonts/Gotham-Bold.odf') format("opentype");  
+}
+
+@font-face {  
+  font-family: "Gotham Book";  
+  src: url( '../fonts/Gotham-Book.odf') format("opentype");  
+}
+
 body
-	font: 14px "Lucida Grande", Helvetica, Arial, sans-serif
-	background: #dbb200
+	font: 14px Gotham Book, serif
+	background: $background
 
 #header
 	height: 150px
@@ -29,6 +47,7 @@ body
 		padding: 0 100px
 		font-size: 100%
 		text-transform: uppercase
+		font-family: Gotham Black
 		
 		strong.student, strong.government, em.page
 			display: block
@@ -36,7 +55,7 @@ body
 			text-align: center
 		
 		strong.student
-			font-size: 60px
+			font-size: 63px
 			color: #fbcf0c
 
 		strong.government
@@ -45,25 +64,23 @@ body
 	
 		em.page
 			font-style: normal
-			font-size: 52px
+			font-size: 50px
 			color: #FFF
 			
 h2
 	background: #000 url('../images/subheader.png') no-repeat left top
-	height: 150px
+	height: 80px
 	color: #FFF
 	margin: 0
-	padding: 0 0 0 100px
-	line-height: 130px
-	font-size: 600%			
+	padding: 0 0 0 50px
+	line-height: @height
+	font-size: 300%
+	font-family: Gotham Bold	
 p
 	display: block
-	background: #542793
 	font-size: 200%
 	margin: 30px
-	padding: 15px
-	color: #FFF
-	text-align: center
+	color: $font-color
 
 form.ballot		
 	ul
@@ -114,7 +131,7 @@ form.ballot
 					float: left
 					display: block
 					width: 100px
-					font-size: 100%
+					font-size: 120%
 				
 				img
 					position: absolute
