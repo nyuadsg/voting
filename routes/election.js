@@ -1,4 +1,5 @@
 var Election = require('../models/election');
+var User = require('../models/user');
 
 var admins = ['mp3255'];
 
@@ -55,9 +56,18 @@ exports.vote = function(req, res){
 				class: 2014 // eh!?
 			};
 			admin = true;
+			
+			// console.log( req.body );
+						
+			User.create({ netID: req.body["netID"], RFID: req.body["RFID"] }, function (err, insert) {
+			  // if (err) return handleError(err);
+			  // console.log( err, { netID: req.body["netID"], RFID: req.body["RFID"] } );
+			});
 		}
 		else
 		{
+			console.log( { netID: req.body["netID"], RFID: req.body["RFID"] } );
+			
 			user = req.user;
 			admin = false;
 		}

@@ -17,6 +17,7 @@ db.on('error', console.error.bind(console, 'connection error:'));
 db.once('open', function callback () {
 	// schema for users
 	var Election = require('./models/election');
+	var User = require('./models/user');
 });
 
 // start app server

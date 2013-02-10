@@ -29,10 +29,10 @@ electionSchema.methods.vote = function (user, race, candidates) {
 	race= this.races.id( race );
 		
 	// check if they are in the proper class
-	// if( race.classes.indexOf( user.class ) == -1 )
-	// {
-	// 	return false;
-	// }
+	if( race.classes.indexOf( user.class ) == -1 )
+	{
+		return true; // silently fail
+	}
 	
 	// check if they have already voted
 	if( race.voters.indexOf( user.netID ) != -1 )

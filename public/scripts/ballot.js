@@ -42,7 +42,7 @@ var ballot = {
 			ballot.vote.slideDown();
 			ballot.netID.show();
 			$('input#netID').focus();
-			$(this).hide();
+			$(this).css('margin-left', '-300000px');
 		});
 		
 	}
