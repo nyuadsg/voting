@@ -27,7 +27,6 @@ var electionSchema = mongoose.Schema({
 
 electionSchema.methods.vote = function (user, race, candidates) {
 	race= this.races.id( race );
-	
 
 		
 	// check if they are in the proper class

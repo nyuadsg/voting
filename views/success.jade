@@ -3,3 +3,7 @@ extends layout
 block content
 	h2 Success
 	p Thank you for voting. Your vote has been saved.
+	
+	if( admin )
+		h2
+			a(href=url) Reset

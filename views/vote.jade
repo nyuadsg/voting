@@ -2,8 +2,13 @@ extends layout
 
 block content
 	form(class='ballot', id=election.id,method='POST')
-	
-		p#directions For each office, select every candidate you approve of. When you have finished, simply click <strong>Vote</strong>.
+		
+		if( admin )
+			#admin
+				input(id='netID',name='netID',type='text',placeholder='NetID')
+				input(id='RFID',name='RFID',type='text',placeholder='RFID')
+		else
+			p#directions For each office, select every candidate you approve of. When you have finished, simply click <strong>Vote</strong>.
 	
 		ul#races
 			each race in races
@@ -19,5 +24,5 @@ block content
 									em
 						li.clear
 		
-		h2
+		h2#vote
 			input(id='submit',type='submit',value='Vote')

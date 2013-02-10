@@ -3,11 +3,17 @@ var ballot = {
 		this.ballot = $('.ballot');
 		this.races = $('.race', this.ballot);
 		this.candidates = $('.candidate', this.ballot);
-		// this.netID= $('input#netID', this.ballot);
+		this.netID= $('input#netID', this.ballot);
+		this.vote = $('#vote')
 		
 		$('input', this.candidates ).change( function( ev ) {
 			$(this).parents('.candidate').toggleClass('selected');
 		});
+		
+		if( this.netID.length > 0 )
+		{
+			ballot.admin();
+		}
 		
 		// this.votes = new Object;
 		
@@ -26,6 +32,20 @@ var ballot = {
 		// 	return false;
 		// });
 	},
+	admin: function() {
+		this.races.hide();
+		this.vote.hide();
+		this.netID.hide();
+		
+		$('input#RFID').focus().keypress( function( ev ) {
+			ballot.races.slideDown();
+			ballot.vote.slideDown();
+			ballot.netID.show();
+			$('input#netID').focus();
+			$(this).hide();
+		});
+		
+	}
 	// voteFor: function( race, candidate ) {
 	// 	this.votes[ '"' + race + '"' ] = candidate;
 	// },

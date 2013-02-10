@@ -31,11 +31,39 @@ exports.view = function(req, res){
   });
 };
 
+exports.admin = function(req, res){
+	Election.findById(req.params.id, function(error, election){
+		var races = election.races;
+				
+		res.render("vote", {
+			title: election.name,
+			admin: true,
+			election: election,
+			races: races
+		});
+  });
+};
+
 exports.vote = function(req, res){
 	Election.findById(req.params.id, function(error, election){
 		success = true;
+		
+		if( req.body["netID"] )
+		{
+			user = {
+				netID: req.body["netID"],
+				class: 2014 // eh!?
+			};
+			admin = true;
+		}
+		else
+		{
+			user = req.user;
+			admin = false;
+		}
+		
 		election.races.forEach( function( element ) {
-			if( !election.vote( req.user, element.id, req.body[element.id] ) ) {
+			if( !election.vote( user, element.id, req.body[element.id] ) ) {
 				success = false;
 			}
 		});
@@ -50,7 +78,9 @@ exports.vote = function(req, res){
 				} else {
 					res.render("success", {
 						title: election.name,
-						name: election.name
+						name: election.name,
+						admin: admin,
+						url: req.url
 					});
 				}
 			});
@@ -64,20 +94,6 @@ exports.vote = function(req, res){
 			});
 		}		
   });
-	
-	// Election.findById(req.params.id, function(error, election){
-	// 	var netID = req.body.netID;	
-	// 	var votes = JSON.parse( req.body.votes );
-	// 	election.races.forEach( function( element ) {
-	// 		console.log( element );
-	// 		
-	// 	});
-	// 	// Object.keys(votes).forEach(function(key, a, _array) {
-	// 	// 	val = votes[ key ];
-	// 	// 	election.vote( netID, key.replace(/['"]/g,''), val );
-	// 	// });
-	// 	// election.save();
-	//   });
 };
 
 exports.list = function(req, res, next){
