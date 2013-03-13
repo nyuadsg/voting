@@ -4,7 +4,7 @@ var User = require('../models/user');
 var admins = ['mp3255'];
 
 exports.info = function( req, res ) {
-	res.redirect( 'http://voting.sg.nyuad.org/election/5116ab7ec269d30200000003/vote' );
+	// res.redirect( 'http://voting.sg.nyuad.org/election/5116ab7ec269d30200000003/vote' );
 	res.render("index", {
 		title: 'Student Government Elections',
 		start: 'February 9th'
@@ -29,6 +29,66 @@ exports.view = function(req, res){
 			election: election,
 			races: races
 		});
+  });
+};
+
+exports.confirm = function(req, res){
+	Election.findById(req.params.id, function(error, election){
+		
+		var races = [];
+		
+		var selections = [];
+		
+		// only pull in races I can vote in
+		election.races.forEach( function( element ) {
+			if( element.classes.indexOf( req.user.class ) != -1 )
+			{				
+				selections[element.id] = element.candidates.id( req.body[element.id] );
+				races.push(element);
+			}
+		});
+		
+		console.log( races );
+						
+		res.render("confirm", {
+			title: election.name,
+			admin: false,
+			election: election,
+			selections: selections,
+			races: races
+		});
+		
+		// election.races.forEach( function( element ) {
+		// 			if( !election.vote( user, element.id, req.body[element.id] ) ) {
+		// 				success = false;
+		// 			}
+		// 		});
+		// 		if( success )
+		// 		{
+		// 			election.save(function (err) {
+		// 			  if (err) {
+		// 					res.render("failure", {
+		// 						title: election.name,
+		// 						reason: 'Results couldn&apos;t be saved.'
+		// 					});
+		// 				} else {
+		// 					res.render("success", {
+		// 						title: election.name,
+		// 						name: election.name,
+		// 						admin: admin,
+		// 						url: req.url
+		// 					});
+		// 				}
+		// 			});
+		// 			
+		// 		}
+		// 		else
+		// 		{
+		// 			res.render("failure", {
+		// 				title: election.name,
+		// 				reason: 'You already voted.'
+		// 			});
+		// 		}		
   });
 };
 
@@ -66,7 +126,7 @@ exports.vote = function(req, res){
 		}
 		else
 		{
-			console.log( { netID: req.body["netID"], RFID: req.body["RFID"] } );
+			// console.log( { netID: req.body["netID"], RFID: req.body["RFID"] } );
 			
 			user = req.user;
 			admin = false;
