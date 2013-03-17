@@ -5,7 +5,7 @@ var candidateSchema = new mongoose.Schema({
 	name: String,
 	year: Number,
 	photo: String,
-	votes: {type: Number, default: 0}
+	votes: {type: Array, default: []}
 });
 
 candidateSchema.virtual('shortyear').get(function () {
@@ -35,10 +35,10 @@ electionSchema.methods.vote = function (user, race, candidates) {
 	}
 	
 	// check if they have already voted
-	// if( race.voters.indexOf( user.netID ) != -1 )
-	// {
-		// return false;
-	// }
+	if( race.voters.indexOf( user.netID ) != -1 )
+	{
+		return false;
+	}
 	
 	if( candidates != null )
 	{
@@ -47,7 +47,7 @@ electionSchema.methods.vote = function (user, race, candidates) {
 			candidates = [candidates];
 		
 		candidates.forEach( function( element ) {
-			race.candidates.id( element ).votes = race.candidates.id( element ).votes + 1;
+			race.candidates.id( element ).votes.push( user.netID );
 		});
 	}
 	
