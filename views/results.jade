@@ -1,0 +1,15 @@
+extends layout
+
+block content
+	p#results Here are current results in the <strong>#{election.name}</strong> election.
+	
+	ul#races
+		each race in races
+			li.race(id=race.id)
+				h2= race.name
+				ul
+					each candidate in race.candidates
+						li.candidate
+							strong #{candidate.name}
+							| :
+							| #{candidate.tally}
