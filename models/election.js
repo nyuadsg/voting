@@ -12,6 +12,10 @@ candidateSchema.virtual('shortyear').get(function () {
   return this.year.toString().substr(2,4);
 });
 
+candidateSchema.virtual('tally').get(function () {
+  return this.votes.length;
+});
+
 var raceSchema = new mongoose.Schema({
 	name: String,
 	candidates: [candidateSchema],

@@ -105,6 +105,18 @@ exports.admin = function(req, res){
   });
 };
 
+exports.results = function(req, res){
+	Election.findById(req.params.id, function(error, election){
+		var races = election.races;
+				
+		res.render("results", {
+			title: election.name,
+			election: election,
+			races: races
+		});
+  });
+};
+
 exports.vote = function(req, res){
 	Election.findById(req.params.id, function(error, election){
 		success = true;

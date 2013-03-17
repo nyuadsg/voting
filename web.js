@@ -51,6 +51,7 @@ app.get('/', election.info);
 app.get('/elections', [login.ensure, election.list]);
 app.get('/election/new', election.new);
 app.get('/election/:id/vote', login.ensure, election.view);
+app.get('/election/:id/results', login.ensure, election.results);
 // app.get('/election/:id/vote', [login.ensure, election.view]);
 app.post('/election/:id/confirm', [login.ensure, election.confirm]);
 app.post('/election/:id/vote', [login.ensure, election.vote]);
