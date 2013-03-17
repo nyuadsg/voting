@@ -1,0 +1,22 @@
+extends layout
+
+block content
+	form(class='ballot', id=election.id,method='POST',action=process.env.BASE_URL + '/election/' + election.id + '/vote')
+		
+		p#confirm.message
+			| Please confirm your votes below, or 
+			a(href=process.env.BASE_URL + '/election/' + election.id + '/vote') retry
+			| .
+		
+		ul#confirmations
+			each race in races
+				li.race(id=race.id)
+					if(selections[race.id] != undefined)
+						input(type='hidden',name=race.id,id=selections[race.id].id,value=selections[race.id].id)
+						p <strong>#{race.name}</strong>: #{selections[race.id].name}
+					else
+						p <strong>#{race.name}</strong>: <em>no confidence</em>
+		
+		h2#vote
+			input(id='submit',type='submit',value='Confirm')
+			a(href=process.env.BASE_URL + '/election/' + election.id + '/vote') Revote
