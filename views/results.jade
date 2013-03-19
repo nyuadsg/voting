@@ -11,5 +11,9 @@ block content
 					each candidate in race.candidates
 						li.candidate
 							strong #{candidate.name}
-							| :
-							| #{candidate.tally}
+							| : 
+							span #{candidate.tally}
+							
+block footer
+	script(src='/lib/chart.js')
+	script(src='/scripts/results.js')
