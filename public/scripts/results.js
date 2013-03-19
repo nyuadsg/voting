@@ -1,7 +1,7 @@
 var results = {
 	init: function() {
-		$('ul#races li.race').each( function() {
-			$(this).append( '<canvas width="400" height="400"></canvas>');
+		$('ul#results li.race').each( function() {
+			$('h2', this).after( '<canvas width="400" height="400"></canvas>');
 			ctx = $('canvas', this).get(0).getContext("2d");
 			data = new Array;
 			$('li.candidate', this).each( function() {
@@ -11,7 +11,7 @@ var results = {
 					value: val,
 					color: clr
 				} );
-				$(this).append( '<em class="swatch">&nbsp;</em>');
+				$(this).prepend( '<em class="swatch">&nbsp;</em>');
 				$('em', this).css('background-color', clr);
 			});
 			// '#'+(0x1000000+(Math.random())*0xffffff).toString(16).substr(1,6)

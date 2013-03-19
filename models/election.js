@@ -41,7 +41,7 @@ electionSchema.methods.vote = function (user, race, candidates) {
 	// check if they have already voted
 	if( race.voters.indexOf( user.netID ) != -1 )
 	{
-		return false;
+		// return false;
 	}
 	
 	if( candidates != null )

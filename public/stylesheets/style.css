@@ -73,6 +73,7 @@ h2 {
   line-height: 80px;
   font-size: 300%;
   font-family: Gotham Bold;
+  clear: both;
 }
 p {
   display: block;
@@ -134,7 +135,7 @@ form.ballot ul li.candidate label img {
   top: 2px;
   width: 100px;
 }
-form.ballot ul li.clear {
+li.clear {
   clear: both;
 }
 h2#vote input#submit,
@@ -154,4 +155,31 @@ h2#vote a {
   height: 1.5em;
   line-height: 1.5em;
   padding: 10px;
+}
+#results,
+#results ul,
+#results li {
+  list-style: none;
+}
+#results li.race canvas {
+  margin-left: 40px;
+  float: right;
+}
+#results li.race ul {
+  float: left;
+}
+#results li.race ul li.candidate {
+  clear: both;
+  float: left;
+  line-height: 2em;
+}
+#results li.race ul li.candidate strong {
+  float: left;
+}
+#results li.race ul li.candidate em.swatch {
+  float: left;
+  display: block;
+  width: 2em;
+  height: 2em;
+  border: 1px solid #fff;
 }

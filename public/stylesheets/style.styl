@@ -76,6 +76,7 @@ h2
 	line-height: @height
 	font-size: 300%
 	font-family: Gotham Bold	
+	clear: both
 p
 	display: block
 	font-size: 200%
@@ -139,8 +140,8 @@ form.ballot
 					top: 2px
 					width: 100px
 			
-		li.clear
-			clear: both
+li.clear
+	clear: both
 
 h2#vote
 	input#submit, a
@@ -160,3 +161,27 @@ h2#vote
 		height: 1.5em
 		line-height: 1.5em
 		padding: 10px
+		
+#results
+	&, ul, li
+		list-style: none
+	li.race
+		canvas
+			margin-left: 40px
+			float: right
+		ul
+			float: left
+			
+			li.candidate
+				clear: both
+				float: left
+				line-height: 2em
+
+				strong
+					float: left
+				em.swatch
+					float: left
+					display: block
+					width: 2em
+					height: 2em
+					border: 1px solid white

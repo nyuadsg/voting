@@ -3,7 +3,7 @@ extends layout
 block content
 	p#results Here are current results in the <strong>#{election.name}</strong> election.
 	
-	ul#races
+	ul#results
 		each race in races
 			li.race(id=race.id)
 				h2= race.name
@@ -13,6 +13,7 @@ block content
 							strong #{candidate.name}
 							| : 
 							span #{candidate.tally}
+					li.clear
 							
 block footer
 	script(src='/lib/chart.js')
