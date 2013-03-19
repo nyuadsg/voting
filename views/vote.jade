@@ -16,12 +16,17 @@ block content
 					h2= race.name
 					ul
 						each candidate in race.candidates
-							li.candidate
+							li.candidate.person
 								input(type='radio',name=race.id,id=candidate.id,value=candidate.id)
 								label(for=candidate.id)
 									strong #{candidate.name} '#{candidate.shortyear}
 									img(src=candidate.photo,width=100,height=137)
-									em
+									em.check
+						li.candidate.noconfidence
+							input(type='radio',name=race.id,id=race.id+'-nc',value='noconfidence')
+							label(for=race.id+'-nc')
+								strong No confidence
+								em.check
 						li.clear
 		
 		h2#vote
