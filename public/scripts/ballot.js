@@ -7,7 +7,7 @@ var ballot = {
 		this.vote = $('#vote')
 		
 		$('input', this.candidates ).change( function( ev ) {
-			$(this).parents('.candidate').toggleClass('selected');
+			$(this).parents('.candidate').toggleClass('selected').siblings().removeClass('selected');
 		});
 		
 		if( this.netID.length > 0 )

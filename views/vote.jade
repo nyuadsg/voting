@@ -17,7 +17,7 @@ block content
 					ul
 						each candidate in race.candidates
 							li.candidate
-								input(type='checkbox',name=race.id,id=candidate.id,value=candidate.id)
+								input(type='radio',name=race.id,id=candidate.id,value=candidate.id)
 								label(for=candidate.id)
 									strong #{candidate.name} '#{candidate.shortyear}
 									img(src=candidate.photo,width=100,height=137)
