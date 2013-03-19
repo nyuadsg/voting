@@ -10,6 +10,10 @@ var ballot = {
 			$(this).parents('.candidate').toggleClass('selected').siblings().removeClass('selected');
 		});
 		
+		$('button', this.candidates).click( function() {
+			$('p.bio', $(this).parents('.candidate')).slideToggle();
+		});
+		
 		if( this.netID.length > 0 )
 		{
 			ballot.admin();

@@ -5,6 +5,7 @@ var candidateSchema = new mongoose.Schema({
 	name: String,
 	year: Number,
 	photo: String,
+	bio: {type: String, default: 'This candidate does not have a bio.'},
 	votes: {type: Array, default: []}
 });
 

@@ -97,6 +97,7 @@ form.ballot
 			float: left
 			margin: 30px
 			color: #FFF
+			position: relative
 			
 			&.selected
 				
@@ -109,11 +110,14 @@ form.ballot
 			input
 				display: none
 			
-			label
+			label, p.bio
 				width: 210px
-				height: 141px
-				position: relative
 				background: #808080
+				
+			label
+				height: 141px				
+				margin: 0
+				position: relative
 				
 				em
 					display: none
@@ -140,7 +144,21 @@ form.ballot
 					left: 2px
 					top: 2px
 					width: 100px
+			
+			button
+				position: absolute
+				top: 0px
+				right: 0px
+							
+			p.bio
+				display: none
+				font-size: 80%
+				margin: 0
+				width: 190px
+				padding: 10px
+				color: #FFF
 					
+				
 			&.noconfidence
 				label
 					strong
