@@ -10,8 +10,15 @@ var ballot = {
 			$(this).parents('.candidate').toggleClass('selected').siblings().removeClass('selected');
 		});
 		
+		$('input:checked', this.candidates).parents('.candidate').addClass('selected');
+		
 		$('button', this.candidates).click( function() {
 			$('p.bio', $(this).parents('.candidate')).slideToggle();
+		});
+		
+		$('a.revote').click( function() {
+			history.back();
+			return false;
 		});
 		
 		if( this.netID.length > 0 )
