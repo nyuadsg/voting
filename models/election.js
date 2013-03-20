@@ -22,8 +22,24 @@ var raceSchema = new mongoose.Schema({
 	candidates: [candidateSchema],
 	school: {type: String, default: 'all'},
 	voters: {type: Array, default: []},
-	classes: {type: Array, default: [2014,2015,2016]}
+	classes: {type: Array, default: [2014,2015,2016,2017]}
 });
+
+raceSchema.methods.canVote = function( user ) {
+	// check classes
+	if( this.classes.indexOf( user.class ) == -1 )
+	{
+		return false;
+	}
+	
+	// check school
+	if( this.school != 'all' && this.school != user.school )
+	{
+		return false;
+	}
+	
+	return true;
+}
 
 var electionSchema = mongoose.Schema({
   name: String,
@@ -35,8 +51,8 @@ var electionSchema = mongoose.Schema({
 electionSchema.methods.vote = function (user, race, candidates) {
 	race= this.races.id( race );
 		
-	// check if they are in the proper class
-	if( race.classes.indexOf( user.class ) == -1 )
+	// check if they have permission to vote in this race
+	if( !race.canVote( user ) )
 	{
 		return true; // silently fail
 	}

@@ -6,7 +6,7 @@ exports.ensure = function(req, res, next) {
 			token: null,
 			netID: process.env.DEV_USER,
 			class: 2016,
-			school: 'NYUAD',
+			school: 'Poly',
 			site: 'AD'
 		};
 	}
