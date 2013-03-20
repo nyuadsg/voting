@@ -1,11 +1,13 @@
 exports.ensure = function(req, res, next) {
 	
-	if( process.env.DEV_USER != undefined )
+	if( process.env.DEV_USER != undefined && process.env.DEV_USER != 'none' )
 	{
 		req.user = {
 			token: null,
 			netID: process.env.DEV_USER,
-			class: 2016
+			class: 2016,
+			school: 'NYUAD',
+			site: 'AD'
 		};
 	}
 	

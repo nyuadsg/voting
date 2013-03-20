@@ -20,6 +20,7 @@ candidateSchema.virtual('tally').get(function () {
 var raceSchema = new mongoose.Schema({
 	name: String,
 	candidates: [candidateSchema],
+	school: {type: String, default: 'all'},
 	voters: {type: Array, default: []},
 	classes: {type: Array, default: [2014,2015,2016]}
 });
@@ -27,7 +28,8 @@ var raceSchema = new mongoose.Schema({
 var electionSchema = mongoose.Schema({
   name: String,
 	open: Boolean,
-	races: [raceSchema]
+	races: [raceSchema],
+	constituency: {type: String, default: 'all'}
 });
 
 electionSchema.methods.vote = function (user, race, candidates) {
