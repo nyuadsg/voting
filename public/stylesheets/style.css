@@ -24,6 +24,7 @@ h2 {
   font-weight: bold;
   text-align: center;
   clear: both;
+  margin-bottom: 0;
 }
 p {
   display: block;
@@ -117,8 +118,15 @@ form.ballot ul li.candidate.noconfidence label strong {
 li.clear {
   clear: both;
 }
-h2#vote input#submit,
+h2#vote {
+  padding: 10px;
+}
+h2#vote input,
 h2#vote a {
+  margin-right: 10px;
+  font-weight: normal;
+}
+h2#vote span {
   font-size: 100%;
   background: #542793;
   border: 2px solid #fff;

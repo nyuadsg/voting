@@ -18,5 +18,5 @@ block content
 						p <strong>#{race.name}</strong>: <em>no confidence</em>
 		
 		h2#vote
-			input(id='submit',type='submit',value='Confirm')
-			a.revote(href=process.env.BASE_URL + '/election/' + election.id + '/vote') Revote
+			input.btn.btn-large(id='submit',type='submit',value='Confirm')
+			a.btn.btn-large.revote(href=process.env.BASE_URL + '/election/' + election.id + '/vote') Revote

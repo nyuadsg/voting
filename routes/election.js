@@ -226,6 +226,11 @@ exports.vote = function(req, res){
 
 exports.list = function(req, res, next){
 	Election.find({}, function(error, elections){
+		if( elections.length == 1 )
+		{
+			res.redirect( process.env.BASE_URL + '/election/' + elections[0].id + '/vote' );
+		}
+		
 		res.render("elections", {
 			title: "All Elections",
 			elections: elections
