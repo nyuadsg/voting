@@ -82,13 +82,12 @@ form.ballot ul li.candidate label em {
 form.ballot ul li.candidate label strong {
   position: absolute;
   left: 110px;
-  top: 50%;
-  margin-top: -1.5em;
+  top: 40px;
   float: left;
   display: block;
-  width: 100px;
-  font-size: 180%;
-  line-height: 1em;
+  width: 95px;
+  font-size: 120%;
+  line-height: 1.2em;
 }
 form.ballot ul li.candidate label img {
   position: absolute;
