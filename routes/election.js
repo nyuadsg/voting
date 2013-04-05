@@ -45,7 +45,7 @@ exports.view = function(req, res){
 		}
 		
 		var races = [];
-		
+				
 		// only pull in races I can vote in
 		election.races.forEach( function( element ) {
 			if( element.canVote( req.user ) )
@@ -271,6 +271,7 @@ exports.new = function(req, res){
 						},
 						{
 							name: 'Alternate Senator',
+							groups: ['admins'],
 							candidates: [
 								{name: 'Clara Bicalho Maia Correia', year: 2016, photo: 'http://voting.sg.nyuad.org/photos/clara.jpg'},
 								{name: 'Morgante Pell', year: 2016, photo: 'http://voting.sg.nyuad.org/photos/morgante.jpg'}
@@ -278,13 +279,14 @@ exports.new = function(req, res){
 						},
 						{
 							name: 'Secretary',
-							school: 'Poly',
+							groups: ['jamesons', 'admins'],
 							candidates: [
 								{name: 'Veronica Houk', year: 2016, photo: 'http://voting.sg.nyuad.org/photos/veronica.jpg'},
 							]
 						},
 						{
 							name: 'Treasurer',
+							groups: ['samsonites'],
 							candidates: [
 								{name: 'Angela Ortega Pastor', year: 2016, photo: 'http://voting.sg.nyuad.org/photos/angela.jpg'},
 								{name: 'Angelina Micha Djaja', year: 2016, photo: 'http://voting.sg.nyuad.org/photos/angelina.jpg'},

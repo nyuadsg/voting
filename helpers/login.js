@@ -7,7 +7,8 @@ exports.ensure = function(req, res, next) {
 			netID: process.env.DEV_USER,
 			class: 2016,
 			school: 'Poly',
-			site: 'AD'
+			site: 'AD',
+			groups: ['admins']
 		};
 	}
 	

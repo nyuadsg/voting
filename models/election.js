@@ -1,5 +1,6 @@
 // we need mongoose
 var mongoose = require('mongoose');
+var _ = require('../public/lib/underscore');
 
 var candidateSchema = new mongoose.Schema({
 	name: String,
@@ -22,10 +23,20 @@ var raceSchema = new mongoose.Schema({
 	candidates: [candidateSchema],
 	school: {type: String, default: 'all'},
 	voters: {type: Array, default: []},
-	classes: {type: Array, default: [2014,2015,2016,2017]}
+	classes: {type: Array, default: [2014,2015,2016,2017]},
+	groups: {type: Array, default: []} // an empty array means all groups
 });
 
 raceSchema.methods.canVote = function( user ) {
+	// check groups
+	if( this.groups.length > 0 ) // empty groups means all
+	{		
+		if( _.intersection( this.groups, user.groups ) < 1 )
+		{
+			return false;
+		}
+	}
+	
 	// check classes
 	if( this.classes.indexOf( user.class ) == -1 )
 	{
@@ -50,7 +61,7 @@ var electionSchema = mongoose.Schema({
 
 electionSchema.methods.vote = function (user, race, candidates) {
 	race= this.races.id( race );
-		
+	
 	// check if they have permission to vote in this race
 	if( !race.canVote( user ) )
 	{

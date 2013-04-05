@@ -80,7 +80,8 @@ passport.use('nyu-passport', new NYUPassportStrategy({
 			netID: profile.netID,
 			class: profile.class,
 			school: profile.school,
-			site: profile.site
+			site: profile.site,
+			groups: profile.groups
 		};
 		done(null, user);
 	}
