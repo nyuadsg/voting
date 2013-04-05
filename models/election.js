@@ -11,6 +11,11 @@ var candidateSchema = new mongoose.Schema({
 });
 
 candidateSchema.virtual('shortyear').get(function () {
+	if( this.year == undefined )
+	{
+		return null;
+	}
+	
   return this.year.toString().substr(2,4);
 });
 
@@ -54,7 +59,7 @@ raceSchema.methods.canVote = function( user ) {
 
 var electionSchema = mongoose.Schema({
   name: String,
-	open: Boolean,
+	open: {type: Boolean, default: true},
 	races: [raceSchema],
 	constituency: {type: String, default: 'all'}
 });

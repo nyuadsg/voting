@@ -49,7 +49,8 @@ app.configure('development', function(){
 // all routes
 app.get('/', election.info);
 app.get('/elections', [login.ensure, election.list]);
-app.get('/election/new', election.new);
+app.get('/election/new', [login.ensure, election.new]);
+app.post('/election/new', [login.ensure, election.create]);
 app.get('/election/:id/vote', login.ensure, election.view);
 app.get('/election/:id/results', login.ensure, election.results);
 // app.get('/election/:id/vote', [login.ensure, election.view]);
