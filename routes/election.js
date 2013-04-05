@@ -165,12 +165,37 @@ exports.results = function(req, res){
 
 exports.toggle = function(req, res){
 	Election.findById(req.params.id, function(error, election){
-		election.open = !election.open;
 		
+		if( _.intersection( election.owners, req.user.groups ).length < 1 )
+		{
+			res.redirect( process.env.BASE_URL );
+			return;
+		}
+		
+		election.open = !election.open;
+
 		election.save( function( err ){
 			if(!err )
 			{
 				res.redirect( process.env.BASE_URL + '/election/' + election.id + '/results' );
+			}
+		})
+  });
+};
+
+exports.delete = function(req, res){
+	Election.findById(req.params.id, function(error, election){
+		
+		if( _.intersection( election.owners, req.user.groups ).length < 1 )
+		{
+			res.redirect( process.env.BASE_URL );
+			return;
+		}
+		
+		election.remove( function( err, elect ) {
+			if(!err )
+			{
+				res.redirect( process.env.BASE_URL + '/elections/admin' );
 			}
 		})
   });

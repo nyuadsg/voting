@@ -4,10 +4,11 @@ block content
 
 	div.admin.controls.btn-group
 		if( election.open )
-			a.btn#toggle(href=process.env.BASE_URL + '/election/' + election.id + '/toggle') Close election
+			a.btn.btn-success#toggle(href=process.env.BASE_URL + '/election/' + election.id + '/toggle') Close election
 		else
-			a.btn#toggle(href=process.env.BASE_URL + '/election/' + election.id + '/toggle') Open election
-		a.btn#results(href=process.env.BASE_URL + '/election/' + election.id + '/vote') Ballot
+			a.btn.btn-primary#toggle(href=process.env.BASE_URL + '/election/' + election.id + '/toggle') Open election
+		a.btn#Ballot(href=process.env.BASE_URL + '/election/' + election.id + '/vote') Ballot
+		a.btn.btn-danger#toggle(href=process.env.BASE_URL + '/election/' + election.id + '/delete') Delete election
 
 	p#results Here are current results in the <strong>#{election.name}</strong> election.
 	
