@@ -1,5 +1,6 @@
 var Election = require('../models/election');
 var User = require('../models/user');
+var _ = require('../public/lib/underscore');
 
 var admins = ['mp3255'];
 
@@ -30,12 +31,14 @@ exports.info = function( req, res ) {
 	// res.redirect( 'http://voting.sg.nyuad.org/election/5116ab7ec269d30200000003/vote' );
 	res.render("index", {
 		title: 'Student Government Elections',
-		start: 'February 9th'
+		start: 'April 8'
 	});
 }
 
 exports.view = function(req, res){
 	Election.findById(req.params.id, function(error, election){
+		
+		if( !election.open )
 		
 		if( !check_constituency( req.user, election.constituency ) )
 		{
@@ -45,6 +48,18 @@ exports.view = function(req, res){
 		}
 		
 		var races = [];
+		var admin = false;
+				
+		if( _.intersection( election.owners, req.user.groups ).length > 0 )
+		{
+			admin = true;
+		}
+		
+		if( !election.open && !admin )
+		{
+			res.redirect( process.env.BASE_URL );
+			return;
+		}
 				
 		// only pull in races I can vote in
 		election.races.forEach( function( element ) {
@@ -56,7 +71,7 @@ exports.view = function(req, res){
 				
 		res.render("vote", {
 			title: election.name,
-			admin: false,
+			admin: admin,
 			election: election,
 			races: races
 		});
@@ -130,22 +145,15 @@ exports.confirm = function(req, res){
   });
 };
 
-exports.admin = function(req, res){
-	Election.findById(req.params.id, function(error, election){
-		var races = election.races;
-				
-		res.render("vote", {
-			title: election.name,
-			admin: true,
-			election: election,
-			races: races
-		});
-  });
-};
-
 exports.results = function(req, res){
 	Election.findById(req.params.id, function(error, election){
 		var races = election.races;
+				
+		if( _.intersection( election.owners, req.user.groups ).length < 1 )
+		{
+			res.redirect( process.env.BASE_URL );
+			return;
+		}
 				
 		res.render("results", {
 			title: election.name,
@@ -155,9 +163,28 @@ exports.results = function(req, res){
   });
 };
 
+exports.toggle = function(req, res){
+	Election.findById(req.params.id, function(error, election){
+		election.open = !election.open;
+		
+		election.save( function( err ){
+			if(!err )
+			{
+				res.redirect( process.env.BASE_URL + '/election/' + election.id + '/results' );
+			}
+		})
+  });
+};
+
 exports.vote = function(req, res){
 	Election.findById(req.params.id, function(error, election){
 		
+		if( !election.open )
+		{
+			res.redirect( process.env.BASE_URL );
+			return;
+		}
+				
 		if( !check_constituency( req.user, election.constituency ) )
 		{
 			res.setHeader('Content-Type', 'text/plain');
@@ -167,7 +194,7 @@ exports.vote = function(req, res){
 		
 		success = true;
 		
-		if( req.body["netID"] )
+		if( false ) // this is for iPad voting
 		{
 			user = {
 				netID: req.body["netID"],
@@ -189,7 +216,7 @@ exports.vote = function(req, res){
 			user = req.user;
 			admin = false;
 		}
-		
+				
 		election.races.forEach( function( element ) {
 			if( !election.vote( user, element.id, req.body[element.id] ) ) {
 				success = false;
@@ -225,21 +252,46 @@ exports.vote = function(req, res){
 };
 
 exports.list = function(req, res, next){
-	Election.find({}, function(error, elections){
+	Election.find({ open: true }, function(error, elections){
 		if( elections.length == 1 )
 		{
 			res.redirect( process.env.BASE_URL + '/election/' + elections[0].id + '/vote' );
 		}
 		
+		var admin = false;
+		if( req.user.groups.indexOf( 'election-creators') != -1 )
+		{
+			admin = true;
+		}
+		
 		res.render("elections", {
 			title: "All Elections",
+			admin: admin,
 			elections: elections
 		});
   });
 };
 
+exports.admin = function(req, res){
+	Election.find({}, function(error, elections){
+
+		if( req.user.groups.indexOf( 'election-creators') == -1 )
+		{
+			res.redirect( process.env.BASE_URL );
+		}
+		else
+		{
+			res.render("elections", {
+				title: "All Elections",
+				admin: true,
+				elections: elections
+			});
+		}		
+  });
+};
+
 exports.new = function( req, res, next ) {
-	if( req.user.groups.indexOf( 'admins' ) == -1 )
+	if( req.user.groups.indexOf( 'election-creators' ) == -1 )
 	{
 		res.redirect( process.env.BASE_URL );
 	}

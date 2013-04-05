@@ -59,9 +59,21 @@ raceSchema.methods.canVote = function( user ) {
 
 var electionSchema = mongoose.Schema({
   name: String,
-	open: {type: Boolean, default: true},
+	open: {type: Boolean, default: false},
+	owners: {type: Array, default: [ "admins" ] }, // who controls the election
 	races: [raceSchema],
 	constituency: {type: String, default: 'all'}
+});
+
+electionSchema.virtual('status').get(function () {
+	if( this.open )
+	{
+		return 'open';
+	}
+	else
+	{
+		return 'closed';
+	}
 });
 
 electionSchema.methods.vote = function (user, race, candidates) {

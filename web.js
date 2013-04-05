@@ -49,15 +49,15 @@ app.configure('development', function(){
 // all routes
 app.get('/', election.info);
 app.get('/elections', [login.ensure, election.list]);
+app.get('/elections/admin', [login.ensure, election.admin]);
 app.get('/election/new', [login.ensure, election.new]);
 app.post('/election/new', [login.ensure, election.create]);
 app.get('/election/:id/vote', login.ensure, election.view);
+app.get('/election/:id/toggle', [login.ensure, election.toggle]);
 app.get('/election/:id/results', login.ensure, election.results);
 // app.get('/election/:id/vote', [login.ensure, election.view]);
 app.post('/election/:id/confirm', [login.ensure, election.confirm]);
 app.post('/election/:id/vote', [login.ensure, election.vote]);
-app.get('/election/:id/admin', [login.ensure, election.admin]);
-app.post('/election/:id/admin', election.vote);
 // app.get('/election/:election/vote/:race/for/:candidate', election.vote);
 
 // authentication with passport

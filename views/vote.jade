@@ -1,9 +1,18 @@
 extends layout
 
 block content
+
+	if( admin )
+		div.admin.controls.btn-group
+			if( election.open )
+				a.btn#toggle(href=process.env.BASE_URL + '/election/' + election.id + '/toggle') Close election
+			else
+				a.btn#toggle(href=process.env.BASE_URL + '/election/' + election.id + '/toggle') Open election
+			a.btn#results(href=process.env.BASE_URL + '/election/' + election.id + '/results') Results
+
 	form(class='ballot', id=election.id,method='POST',action=process.env.BASE_URL + '/election/' + election.id + '/confirm')
 		
-		if( admin )
+		if( false )
 			#admin
 				input(id='netID',name='netID',type='text',placeholder='NetID')
 				input(id='RFID',name='RFID',type='text',placeholder='RFID')
