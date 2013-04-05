@@ -108,11 +108,11 @@ form.ballot ul li.candidate p.bio {
   padding: 10px;
   color: #fff;
 }
-form.ballot ul li.candidate.noconfidence label strong {
+form.ballot ul li.candidate.nophoto label strong {
   left: 5px;
   width: 200px;
   text-align: center;
-  font-size: 240%;
+  font-size: 200%;
 }
 li.clear {
   clear: both;

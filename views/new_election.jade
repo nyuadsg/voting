@@ -1,0 +1,47 @@
+extends layout
+
+block content
+	form#new_election(method='POST',action=process.env.BASE_URL + '/election/new')
+		
+		h3 Sample Schema
+		textarea(disabled).
+			{
+			"name": "Spring 2013",
+			"races": [
+			{
+			"name": "President",
+			"groups": [],
+			"candidates": [
+			{"name": "Alex Nyikos", "year": 2015, "photo": "http://voting.sg.nyuad.org/photos/alex.jpg", "bio": "Long bio here."},
+			{"name": "Leah Reynolds", "year": 2014, "photo": "http://voting.sg.nyuad.org/photos/leah.jpg", "bio": "Some biography here."},
+			{"name": "Otari (Otto) Kakhidze", "photo": "http://voting.sg.nyuad.org/photos/otto.jpg", "bio": "Note that year is optional"},
+			{"name": "Massimiliano Valli", "bio": "So is photo."},
+			{"name": "Andrew Pitts" }
+			]
+			},
+			{
+			"name": "Class of 2016 Representative",
+			"groups": [ "nyuad2016" ],
+			"candidates": [
+			{"name": "Alex Nyikos", "year": 2015, "photo": "http://voting.sg.nyuad.org/photos/alex.jpg", "bio": "Long bio here."},
+			{"name": "Leah Reynolds", "year": 2014, "photo": "http://voting.sg.nyuad.org/photos/leah.jpg", "bio": "Some biography here."},
+			{"name": "Andrew Pitts" }
+			]
+			},
+			{
+			"name": "Anti-Junior Alliance Coordinator",
+			"groups": [ "nyuad2016", "nyuad2015" ],
+			"candidates": [
+			{"name": "Alex Nyikos" },
+			{"name": "Andrew Pitts" }
+			]
+			}
+			]
+			}
+		
+		label(for='schema') Election Schema
+		textarea#schema(name='schema')
+		
+		input.btn.btn-large(id='submit',type='submit',value='Create')
+		
+		

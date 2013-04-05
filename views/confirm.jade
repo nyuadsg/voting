@@ -15,7 +15,7 @@ block content
 						input(type='hidden',name=race.id,id=selections[race.id].id,value=selections[race.id].id)
 						p <strong>#{race.name}</strong>: #{selections[race.id].name}
 					else
-						p <strong>#{race.name}</strong>: <em>no confidence</em>
+						p <strong>#{race.name}</strong>: <em>abstain</em>
 		
 		h2#vote
 			input.btn.btn-large(id='submit',type='submit',value='Confirm')
