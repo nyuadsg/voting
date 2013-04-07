@@ -66,9 +66,10 @@ form.ballot ul li.candidate p.bio {
   background: #808080;
 }
 form.ballot ul li.candidate label {
-  height: 141px;
+  height: auto;
   margin: 0;
   position: relative;
+  text-align: left;
 }
 form.ballot ul li.candidate label em {
   display: none;
@@ -80,10 +81,10 @@ form.ballot ul li.candidate label em {
   left: 0px;
 }
 form.ballot ul li.candidate label strong {
-  position: absolute;
-  left: 110px;
-  top: 40px;
-  float: left;
+  padding-left: 110px;
+  padding-top: 40px;
+  padding-bottom: 4px;
+  min-height: 64px;
   display: block;
   width: 95px;
   font-size: 120%;
@@ -94,6 +95,7 @@ form.ballot ul li.candidate label img {
   left: 2px;
   top: 2px;
   width: 100px;
+  max-height: 100px;
 }
 form.ballot ul li.candidate button {
   position: absolute;
@@ -109,8 +111,8 @@ form.ballot ul li.candidate p.bio {
   color: #fff;
 }
 form.ballot ul li.candidate.nophoto label strong {
-  left: 5px;
-  width: 200px;
+  padding-left: 0px;
+  width: 210px;
   text-align: center;
   font-size: 200%;
 }

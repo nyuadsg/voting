@@ -75,9 +75,10 @@ form.ballot
 				background: #808080
 				
 			label
-				height: 141px				
+				height: auto				
 				margin: 0
 				position: relative
+				text-align: left
 				
 				em
 					display: none
@@ -89,10 +90,10 @@ form.ballot
 					left: 0px
 				
 				strong
-					position: absolute
-					left: 110px
-					top: 40px
-					float: left
+					padding-left: 110px
+					padding-top: 40px
+					padding-bottom: 4px
+					min-height: 64px
 					display: block
 					width: 95px
 					font-size: 120%
@@ -103,6 +104,7 @@ form.ballot
 					left: 2px
 					top: 2px
 					width: 100px
+					max-height: 100px
 								
 			button
 				position: absolute
@@ -121,8 +123,8 @@ form.ballot
 			&.nophoto
 				label
 					strong
-						left: 5px
-						width: 200px
+						padding-left: 0px
+						width: 210px
 						text-align: center
 						font-size: 200%
 			

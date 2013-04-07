@@ -8,7 +8,7 @@ exports.ensure = function(req, res, next) {
 			class: 2016,
 			school: 'Poly',
 			site: 'AD',
-			groups: ['admins','nyuad2016','election-creators']
+			groups: ['admins','nyuad2016','election-creators',"nyu-admins"]
 		};
 	}
 	
