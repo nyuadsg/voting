@@ -2,6 +2,7 @@
 	"name": "status",
 	"version": "0.0.1",
 	"dependencies": {
+	   "nodefly": "stable",
 	  "express": "3.0.5",
 		"mongodb": "*",
 		"mongoose": "3.5.3",

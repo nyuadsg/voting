@@ -8,6 +8,12 @@ var login = require('./helpers/login');
 var passport = require('passport')
   , NYUPassportStrategy = require('passport-nyu').Strategy;
 
+// start nodefly
+require('nodefly').profile(
+    process.env.NODEFLY_APPLICATION_KEY,
+    [process.env.APPLICATION_NAME,'Heroku']
+);
+
 // prepare database
 var mongoose = require('mongoose');
 mongoose.connect(process.env.MONGOLAB_URI || process.env.MONGOHQ_URL || 'mongodb://localhost/voting');
