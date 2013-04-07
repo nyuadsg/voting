@@ -41,7 +41,6 @@ raceSchema.methods.canVote = function( user ) {
 			return false;
 		}
 	}
-	
 	// check classes
 	if( this.classes.indexOf( user.class ) == -1 )
 	{
@@ -50,6 +49,12 @@ raceSchema.methods.canVote = function( user ) {
 	
 	// check school
 	if( this.school != 'all' && this.school != user.school )
+	{
+		return false;
+	}
+	
+	// check if they have already voted
+	if( this.voters.indexOf( user.netID ) != -1 )
 	{
 		return false;
 	}

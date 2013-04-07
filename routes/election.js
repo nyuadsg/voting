@@ -68,13 +68,23 @@ exports.view = function(req, res){
 				races.push( element );
 			}		
 		});
-				
-		res.render("vote", {
-			title: election.name,
-			admin: admin,
-			election: election,
-			races: races
-		});
+		
+		if( races.length > 0 )
+		{
+			res.render("vote", {
+				title: election.name,
+				admin: admin,
+				election: election,
+				races: races
+			});
+		}
+		else
+		{
+			res.render("failure", {
+				title: election.name,
+				reason: 'Sorry, you already voted.'
+			});
+		}
   });
 };
 
