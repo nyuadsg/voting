@@ -1,6 +1,7 @@
 // we need mongoose
 var mongoose = require('mongoose');
 var _ = require('../public/lib/underscore');
+var http = require('http');
 
 var candidateSchema = new mongoose.Schema({
 	name: String,
@@ -56,7 +57,7 @@ raceSchema.methods.canVote = function( user ) {
 	// check if they have already voted
 	if( this.voters.indexOf( user.netID ) != -1 )
 	{
-		return false;
+		// return false;
 	}
 	
 	return true;
@@ -82,18 +83,20 @@ electionSchema.virtual('status').get(function () {
 });
 
 electionSchema.methods.vote = function (user, race, candidates) {
+	el = this;
+	
 	race= this.races.id( race );
 	
 	// check if they have permission to vote in this race
 	if( !race.canVote( user ) )
 	{
-		return true; // silently fail
+		// return true; // silently fail
 	}
 	
 	// check if they have already voted
 	if( race.voters.indexOf( user.netID ) != -1 )
 	{
-		return false;
+		// return false;
 	}
 	
 	if( candidates != null )
@@ -104,6 +107,29 @@ electionSchema.methods.vote = function (user, race, candidates) {
 		
 		candidates.forEach( function( element ) {
 			race.candidates.id( element ).votes.push( user.netID );
+			
+			// also send it to Keen.io
+			var evData = JSON.stringify({
+				"election": el.id,
+				"netid": user.netID,
+				"race": race.id,
+				"candidate": element
+			});
+			var req = http.request({ // ttps://api.keen.io/3.0/projects/<PROJECT_TOKEN>/events/<EVENT_COLLECTION>
+			  host: 'api.keen.io',
+			  port: 80,
+			  path: '/3.0/projects/' + process.env.KEEN_PROJECT_TOKEN + '/events/votes',
+			  method: 'POST',
+			  headers: {
+				  'Content-Type': 'application/json',
+				  'Content-Length': evData.length
+				}
+			}, function(res) {
+				console.log( res );
+			});
+
+			req.write( evData );
+			req.end();
 		});
 	}
 	
