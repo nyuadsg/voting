@@ -42,22 +42,22 @@ raceSchema.methods.canVote = function( user ) {
 			return false;
 		}
 	}
-	// check classes
-	if( this.classes.indexOf( user.class ) == -1 )
-	{
-		return false;
-	}
-	
-	// check school
-	if( this.school != 'all' && this.school != user.school )
-	{
-		return false;
-	}
+	// check classes -- we don't do this anymore (use groups)
+	// if( this.classes.indexOf( user.class ) == -1 )
+	// {
+	// 	return false;
+	// }
+	// 
+	// // check school -- we don't do this anymore (use groups)
+	// if( this.school != 'all' && this.school != user.school )
+	// {
+	// 	return false;
+	// }
 	
 	// check if they have already voted
 	if( this.voters.indexOf( user.netID ) != -1 )
 	{
-		// return false;
+		return false;
 	}
 	
 	return true;
@@ -90,13 +90,13 @@ electionSchema.methods.vote = function (user, race, candidates) {
 	// check if they have permission to vote in this race
 	if( !race.canVote( user ) )
 	{
-		// return true; // silently fail
+		return true; // silently fail
 	}
 	
 	// check if they have already voted
 	if( race.voters.indexOf( user.netID ) != -1 )
 	{
-		// return false;
+		return false;
 	}
 	
 	if( candidates != null )
@@ -125,7 +125,7 @@ electionSchema.methods.vote = function (user, race, candidates) {
 				  'Content-Length': evData.length
 				}
 			}, function(res) {
-				console.log( res );
+				// console.log( res );
 			});
 
 			req.write( evData );
