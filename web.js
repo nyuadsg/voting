@@ -1,3 +1,9 @@
+// start nodefly
+require('nodefly').profile(
+    process.env.NODEFLY_APPLICATION_KEY,
+    [process.env.APPLICATION_NAME,'Heroku']
+);
+
 // load dependencies
 var express = require('express')
 	, http = require('http')
@@ -7,12 +13,6 @@ var election = require('./routes/election')
 var login = require('./helpers/login');
 var passport = require('passport')
   , NYUPassportStrategy = require('passport-nyu').Strategy;
-
-// start nodefly
-require('nodefly').profile(
-    process.env.NODEFLY_APPLICATION_KEY,
-    [process.env.APPLICATION_NAME,'Heroku']
-);
 
 // prepare database
 var mongoose = require('mongoose');
