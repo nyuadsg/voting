@@ -288,6 +288,18 @@ exports.vote = function(req, res){
 
 exports.list = function(req, res, next){
 	Election.find({ open: true }, function(error, elections){
+		
+		var els = [];
+		
+		elections.forEach( function( element ) {
+			if( element.getRaces( req.user ).length > 0 )
+			{
+				els.push( element )
+			}
+		});
+		
+		elections = els;
+		
 		if( elections.length == 1 )
 		{
 			res.redirect( process.env.BASE_URL + '/election/' + elections[0].id + '/vote' );

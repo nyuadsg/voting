@@ -82,6 +82,20 @@ electionSchema.virtual('status').get(function () {
 	}
 });
 
+// return the races a user can vote in
+electionSchema.methods.getRaces = function (user) {
+	var races = [];
+	
+	this.races.forEach( function( element ) {
+		if( element.canVote( user ) )
+		{
+			races.push( element );
+		}		
+	});
+	
+	return races;
+}
+
 electionSchema.methods.vote = function (user, race, candidates) {
 	el = this;
 	
