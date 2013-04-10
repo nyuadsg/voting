@@ -1,5 +1,14 @@
 var results = {
 	init: function() {
+		// check delete
+		// $('.admin.controls #delete').click( function() {
+		// 	
+		// 	$('#confirmDelete').show();
+		// 	
+		// 	return false;
+		// });
+		
+		// charts
 		$('ul#results li.race').each( function() {
 			$('h2', this).after( '<canvas width="400" height="400"></canvas>');
 			ctx = $('canvas', this).get(0).getContext("2d");

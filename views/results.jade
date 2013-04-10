@@ -8,8 +8,15 @@ block content
 		else
 			a.btn.btn-primary#toggle(href=process.env.BASE_URL + '/election/' + election.id + '/toggle') Open election
 		a.btn#Ballot(href=process.env.BASE_URL + '/election/' + election.id + '/vote') Ballot
-		a.btn.btn-danger#toggle(href=process.env.BASE_URL + '/election/' + election.id + '/delete') Delete election
+		button.btn.btn-danger#delete(type='button',data-toggle='modal',data-target='#confirmDelete') Delete election
 
+	div.modal.hide.fade.form-horizontal#confirmDelete(aria-labelledby="confirmDelete",aria-hidden="true")
+		.modal-body
+			p Are you sure you want to delete this election?
+		.modal-footer
+			a.btn.btn-danger(href=process.env.BASE_URL + '/election/' + election.id + '/delete') Delete
+			button.btn(data-dismiss='modal',aria-hidden='true') Close
+	
 	p#results Here are current results in the <strong>#{election.name}</strong> election.
 	
 	ul#results
@@ -25,5 +32,6 @@ block content
 					li.clear
 							
 block footer
+	script(src='//netdna.bootstrapcdn.com/twitter-bootstrap/2.3.1/js/bootstrap.min.js')
 	script(src='/lib/chart.js')
 	script(src='/scripts/results.js')

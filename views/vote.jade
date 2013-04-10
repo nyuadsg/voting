@@ -4,12 +4,7 @@ block content
 
 	if( admin )
 		div.admin.controls.btn-group
-			if( election.open )
-				a.btn.btn-success#toggle(href=process.env.BASE_URL + '/election/' + election.id + '/toggle') Close election
-			else
-				a.btn.btn-primary#toggle(href=process.env.BASE_URL + '/election/' + election.id + '/toggle') Open election
 			a.btn#results(href=process.env.BASE_URL + '/election/' + election.id + '/results') Results
-			a.btn.btn-danger#toggle(href=process.env.BASE_URL + '/election/' + election.id + '/delete') Delete election
 
 	form(class='ballot', id=election.id,method='POST',action=process.env.BASE_URL + '/election/' + election.id + '/confirm')
 		
