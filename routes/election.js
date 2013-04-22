@@ -351,7 +351,7 @@ exports.new = function( req, res, next ) {
 }
 
 exports.create = function( req, res, next ) {
-	if( req.user.groups.indexOf( 'admins' ) == -1 )
+	if( req.user.groups.indexOf( 'election-creators' ) == -1 )
 	{
 		res.redirect( process.env.BASE_URL );
 	}
