@@ -22,3 +22,7 @@ exports.finish = function(req, res){
 		res.redirect( process.env.BASE_URL );
 	}
 };
+
+exports.me = function( req, res ) {
+	res.send( req.user );
+}

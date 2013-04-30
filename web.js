@@ -100,6 +100,7 @@ app.get('/auth/start', auth.start); // start the auth process
 app.get('/auth/passport', passport.authenticate('nyu-passport')); // pass along to passport
 app.get('/auth/passport/callback', passport.authenticate('nyu-passport', { successRedirect: '/auth/end', failureRedirect: '/auth/passport' })); // hear back from Passport
 app.get('/auth/end', auth.finish); // finish the auth process
+app.get('/auth/me', [login.ensure, auth.me]); // Get info on the current user
 
 // start listening
 var port = process.env.PORT || 5000;
