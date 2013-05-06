@@ -6,14 +6,14 @@ block content
 		div.admin.controls.btn-group
 			a.btn#results(href=process.env.BASE_URL + '/election/' + election.id + '/results') Results
 
-	form(class='ballot', id=election.id,method='POST',action=process.env.BASE_URL + '/election/' + election.id + '/confirm')
+	form(class='ballot', id=election.id,method='POST',action=next_action)
 		
 		if( false )
 			#admin
 				input(id='netID',name='netID',type='text',placeholder='NetID')
 				input(id='RFID',name='RFID',type='text',placeholder='RFID')
 		else
-			p#directions For each office, select your chosen candidate or <em>no confidence</em>. When you have finished, simply click <strong>Vote</strong>.
+			p#directions!=election.directions
 	
 		ul#races
 			each race in races

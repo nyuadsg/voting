@@ -82,7 +82,7 @@ passport.use('nyu-passport', new NYUPassportStrategy({
 	clientSecret: process.env.PASSPORT_SECRET,
 	callbackURL: process.env.BASE_URL + '/auth/passport/callback'
 	},
-	function(accessToken, refreshToken, profile, done) {
+	function(accessToken, refreshToken, profile, done) {		
 		user = {
 			token: accessToken,
 			netID: profile.netID,

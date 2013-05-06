@@ -69,13 +69,25 @@ exports.view = function(req, res){
 			}		
 		});
 		
+		
 		if( races.length > 0 )
 		{
+			
+			if( election.confirmation )
+			{
+				next = process.env.BASE_URL + '/election/' + election.id + '/confirm'
+			}
+			else
+			{
+			 	next = process.env.BASE_URL + '/election/' + election.id + '/vote'
+			}
+			
 			res.render("vote", {
 				title: election.name,
 				admin: admin,
 				election: election,
-				races: races
+				races: races,
+				next_action: next
 			});
 		}
 		else

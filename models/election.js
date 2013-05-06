@@ -68,7 +68,9 @@ var electionSchema = mongoose.Schema({
 	open: {type: Boolean, default: false},
 	owners: {type: Array, default: [ "admins" ] }, // who controls the election
 	races: [raceSchema],
-	constituency: {type: String, default: 'all'}
+	constituency: {type: String, default: 'all'},
+	directions: {type: String, default: 'For each office, select your chosen candidate or <em>no confidence</em>. When you have finished, simply click <strong>Vote</strong>.'},
+	confirmation: {type: Boolean, default: false},
 });
 
 electionSchema.virtual('status').get(function () {
