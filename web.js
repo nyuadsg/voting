@@ -1,8 +1,8 @@
 // start nodefly
-require('nodefly').profile(
-    process.env.NODEFLY_APPLICATION_KEY,
-    [process.env.APPLICATION_NAME,'Heroku']
-);
+// require('nodefly').profile(
+//     process.env.NODEFLY_APPLICATION_KEY,
+//     [process.env.APPLICATION_NAME,'Heroku']
+// );
 
 // load dependencies
 var express = require('express')

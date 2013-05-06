@@ -2,7 +2,7 @@
 	"name": "status",
 	"version": "0.0.1",
 	"dependencies": {
-	   "nodefly": "stable",
+	  "nodefly": "latest",
 	  "express": "3.0.5",
 		"mongodb": "*",
 		"mongoose": "3.5.3",
@@ -10,8 +10,7 @@
 		"stylus": "*",
 		"passport": "*",
 		"passport-google": "*",
-		"passport-nyu": "*",
-		"socket.io": "0.9.10"
+		"passport-nyu": "*"
 	},
 	"engines": {
 		"node": "0.8.x",
