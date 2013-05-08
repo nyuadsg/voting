@@ -122,30 +122,35 @@ electionSchema.methods.vote = function (user, race, candidates) {
 			candidates = [candidates];
 		
 		candidates.forEach( function( element ) {
-			race.candidates.id( element ).votes.push( user.netID );
+			cand = race.candidates.id( element );
 			
-			// also send it to Keen.io
-			var evData = JSON.stringify({
-				"election": el.id,
-				"netid": user.netID,
-				"race": race.id,
-				"candidate": element
-			});
-			var req = http.request({ // ttps://api.keen.io/3.0/projects/<PROJECT_TOKEN>/events/<EVENT_COLLECTION>
-			  host: 'api.keen.io',
-			  port: 80,
-			  path: '/3.0/projects/' + process.env.KEEN_PROJECT_TOKEN + '/events/votes',
-			  method: 'POST',
-			  headers: {
-				  'Content-Type': 'application/json',
-				  'Content-Length': evData.length
-				}
-			}, function(res) {
-				// console.log( res );
-			});
+			if( cand != null ) { // sanity check
+				race.candidates.id( element ).votes.push( user.netID );
 
-			req.write( evData );
-			req.end();
+				// also send it to Keen.io
+				var evData = JSON.stringify({
+					"election": el.id,
+					"netid": user.netID,
+					"race": race.id,
+					"candidate": element
+				});
+				var req = http.request({ // ttps://api.keen.io/3.0/projects/<PROJECT_TOKEN>/events/<EVENT_COLLECTION>
+				  host: 'api.keen.io',
+				  port: 80,
+				  path: '/3.0/projects/' + process.env.KEEN_PROJECT_TOKEN + '/events/votes',
+				  method: 'POST',
+				  headers: {
+					  'Content-Type': 'application/json',
+					  'Content-Length': evData.length
+					}
+				}, function(res) {
+					// console.log( res );
+				});
+
+				req.write( evData );
+				req.end();
+			}
+			
 		});
 	}
 	
